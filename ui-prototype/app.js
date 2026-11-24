@@ -128,7 +128,7 @@
   async function dataTimestamp() {
     if (state.mode !== "pipeline" || location.protocol === "file:") return null;
     try {
-      const r = await fetch("../dashboard/data.js", { method: "HEAD", cache: "no-store" });
+      const r = await fetch("/dashboard/data.js", { method: "HEAD", cache: "no-store" });
       const lm = r.headers.get("Last-Modified");
       return lm ? new Date(lm) : null;
     } catch (e) { return null; }

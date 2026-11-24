@@ -860,3 +860,6 @@ td.empty { padding: 48px 20px; text-align: center; font: 500 13px var(--mono); c
 .dir-more:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
 .dir-more .dm-x { display: inline-block; width: 8px; height: 8px; border-right: 2px solid currentColor; border-bottom: 2px solid currentColor; transform: translateY(-2px) rotate(45deg); transition: transform .2s var(--ease); }
 .dir-more[aria-expanded="true"] .dm-x { transform: translateY(2px) rotate(-135deg); }
+
+/* the HTML hidden attribute must win over component display rules (flex/grid spans, wraps) */
+[hidden] { display: none !important; }

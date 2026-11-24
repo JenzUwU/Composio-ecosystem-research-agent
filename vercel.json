@@ -1,9 +1,9 @@
-
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/ui-prototype/index.html"
-    }
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "sh build-static.sh",
+  "outputDirectory": "dist",
+  "redirects": [
+    { "source": "/ui-prototype", "destination": "/", "permanent": false },
+    { "source": "/ui-prototype/:path*", "destination": "/", "permanent": false }
   ]
 }
