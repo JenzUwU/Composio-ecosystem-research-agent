@@ -78,44 +78,34 @@
   }
 
   async function load() {
-    const forceSample = /[?&]data=sample/.test(location.search);
-    if (!forceSample && window.RESEARCH_DATA && Array.isArray(window.RESEARCH_DATA.apps)) {
-      state.mode = "custom";
-      state.rows = window.RESEARCH_DATA.apps.map(fromGeneric);
-      state.ver = window.RESEARCH_DATA.verification || null;
-      state.total = (window.RESEARCH_DATA.meta && window.RESEARCH_DATA.meta.applications_target) || 100;
-      return;
-    }
-    if (!forceSample && window.DATA && Array.isArray(window.DATA.rows)) {
-      state.mode = "pipeline";
-      state.raw = window.DATA;
-      state.ver = window.DATA.verification || null;
-      state.total = (state.ver && state.ver.applications_total) || 100;
-      state.rows = window.DATA.rows.map(fromPipeline);
-      try {
-        const res = await fetch("../data/apps.json", { cache: "no-store" });
-        if (res.ok) {
-          const apps = await res.json();
-          const have = new Set(state.rows.map((r) => r.id));
-          apps.forEach((a) => { if (!have.has(a.id)) state.rows.push(pendingFromApp(a)); });
-          state.appsListLoaded = true;
-        }
-      } catch (e) { /* file:// — pending apps can't be listed; that's reported in the banner */ }
-      return;
-    }
+  if (window.DATA && Array.isArray(window.DATA.rows)) {
+    state.mode = "pipeline";
+    state.raw = window.DATA;
+    state.ver = window.DATA.verification || null;
+    state.total = (state.ver && state.ver.applications_total) || 100;
+    state.rows = window.DATA.rows.map(fromPipeline);
+
     try {
-      const res = await fetch("data/sample-data.json", { cache: "no-store" });
-      if (!res.ok) throw new Error(res.status);
-      const j = await res.json();
-      state.mode = "sample";
-      state.rows = arr(j.apps).map(fromGeneric);
-      state.ver = j.verification || null;
-      state.total = (j.meta && j.meta.applications_target) || 100;
+      const res = await fetch("/data/apps.json", { cache: "no-store" });
+      if (res.ok) {
+        const apps = await res.json();
+        const have = new Set(state.rows.map((r) => r.id));
+        apps.forEach((a) => {
+          if (!have.has(a.id)) state.rows.push(pendingFromApp(a));
+        });
+        state.appsListLoaded = true;
+      }
     } catch (e) {
-      state.mode = "none";
-      state.rows = [];
+      console.warn("Optional app directory could not be loaded:", e);
     }
+
+    return;
   }
+
+  state.mode = "none";
+  state.rows = [];
+  console.error("Research data failed to load. Check /dashboard/data.js");
+}
 
   const adjudicated = () => state.rows.filter((r) => r.status === "adjudicated");
   const categories = () => {
