@@ -1,0 +1,795 @@
+{
+ "n": 100,
+ "headline": {
+  "ready": 66,
+  "limited": 18,
+  "outreach": 6,
+  "infeasible": 1,
+  "insufficient": 9,
+  "self_serve": 75,
+  "self_serve_free": 68,
+  "oauth": 66,
+  "api_key_like": 69,
+  "multi_auth": 56,
+  "rest": 90,
+  "graphql": 13,
+  "no_api": 7,
+  "mcp_official": 50,
+  "mcp_third": 26,
+  "mcp_none": 12,
+  "llms_txt": 73
+ },
+ "auth_counts": {
+  "OAuth2": 66,
+  "API Key": 59,
+  "Personal Access Token": 21,
+  "Basic": 12,
+  "Bearer Token": 9,
+  "Other": 8
+ },
+ "access_counts": {
+  "Self-serve (free)": 46,
+  "Self-serve (free trial / sandbox)": 22,
+  "Self-serve (paid plan required)": 7,
+  "Admin approval / app review": 10,
+  "Enterprise-only": 3,
+  "Partnership / contact-sales gated": 2,
+  "Unclear": 10
+ },
+ "verdict_counts": {
+  "Ready to build": 66,
+  "Buildable with limitations": 18,
+  "Requires outreach / partnership": 6,
+  "Not currently feasible": 1,
+  "Insufficient evidence": 9
+ },
+ "blocker_counts": {
+  "None": 66,
+  "Paid plan required": 12,
+  "App review / partner approval": 12,
+  "Insufficient documentation": 8,
+  "Admin install / consent": 1,
+  "No public API": 1
+ },
+ "mcp_counts": {
+  "Official": 50,
+  "Unclear": 12,
+  "Third-party/community": 26,
+  "None found": 12
+ },
+ "by_category": [
+  {
+   "category": "CRM and Sales",
+   "n": 10,
+   "oauth": 9,
+   "key_or_token": 7,
+   "self_serve": 9,
+   "gated": 1,
+   "ready": 8,
+   "limited": 1,
+   "outreach": 1,
+   "infeasible": 0,
+   "mcp_official": 6,
+   "verdicts": {
+    "Ready to build": [
+     "HubSpot",
+     "Pipedrive",
+     "Attio",
+     "Twenty",
+     "Podio",
+     "Zoho CRM",
+     "Close",
+     "Copper"
+    ],
+    "Buildable with limitations": [
+     "Salesforce"
+    ],
+    "Requires outreach / partnership": [
+     "DealCloud"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Support and Helpdesk",
+   "n": 10,
+   "oauth": 5,
+   "key_or_token": 9,
+   "self_serve": 9,
+   "gated": 1,
+   "ready": 8,
+   "limited": 1,
+   "outreach": 1,
+   "infeasible": 0,
+   "mcp_official": 4,
+   "verdicts": {
+    "Ready to build": [
+     "Zendesk",
+     "Intercom",
+     "Freshdesk",
+     "Front",
+     "LiveAgent",
+     "Help Scout",
+     "Gorgias",
+     "Gladly"
+    ],
+    "Buildable with limitations": [
+     "Plain"
+    ],
+    "Requires outreach / partnership": [
+     "Pylon"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Communications and Messaging",
+   "n": 10,
+   "oauth": 7,
+   "key_or_token": 5,
+   "self_serve": 10,
+   "gated": 0,
+   "ready": 9,
+   "limited": 1,
+   "outreach": 0,
+   "infeasible": 0,
+   "mcp_official": 3,
+   "verdicts": {
+    "Ready to build": [
+     "Slack",
+     "Twilio",
+     "Zoho Cliq",
+     "Lark (Larksuite)",
+     "Pumble",
+     "Discord",
+     "Telegram",
+     "WhatsApp Business",
+     "Vonage"
+    ],
+    "Buildable with limitations": [
+     "Aircall"
+    ],
+    "Requires outreach / partnership": [],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Marketing, Ads, Email and Social",
+   "n": 10,
+   "oauth": 8,
+   "key_or_token": 5,
+   "self_serve": 4,
+   "gated": 6,
+   "ready": 4,
+   "limited": 5,
+   "outreach": 1,
+   "infeasible": 0,
+   "mcp_official": 3,
+   "verdicts": {
+    "Ready to build": [
+     "Mailchimp",
+     "Klaviyo",
+     "systeme.io",
+     "SendGrid"
+    ],
+    "Buildable with limitations": [
+     "Meta Ads",
+     "LinkedIn Ads",
+     "GoHighLevel",
+     "Pinterest",
+     "Threads (Meta)"
+    ],
+    "Requires outreach / partnership": [
+     "Google Ads"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Ecommerce",
+   "n": 10,
+   "oauth": 9,
+   "key_or_token": 5,
+   "self_serve": 6,
+   "gated": 2,
+   "ready": 5,
+   "limited": 2,
+   "outreach": 1,
+   "infeasible": 2,
+   "mcp_official": 5,
+   "verdicts": {
+    "Ready to build": [
+     "Shopify",
+     "WooCommerce",
+     "BigCommerce",
+     "Ecwid",
+     "Gumroad"
+    ],
+    "Buildable with limitations": [
+     "Magento (Adobe Commerce)",
+     "Amazon Selling Partner"
+    ],
+    "Requires outreach / partnership": [
+     "Salesforce Commerce Cloud"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": [
+     "Squarespace",
+     "fanbasis"
+    ]
+   }
+  },
+  {
+   "category": "Data, SEO and Scraping",
+   "n": 10,
+   "oauth": 1,
+   "key_or_token": 8,
+   "self_serve": 6,
+   "gated": 1,
+   "ready": 4,
+   "limited": 2,
+   "outreach": 1,
+   "infeasible": 3,
+   "mcp_official": 7,
+   "verdicts": {
+    "Ready to build": [
+     "DataForSEO",
+     "MrScraper",
+     "Apify",
+     "Bright Data"
+    ],
+    "Buildable with limitations": [
+     "SE Ranking",
+     "Ahrefs"
+    ],
+    "Requires outreach / partnership": [
+     "Clay"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": [
+     "Firecrawl",
+     "Sherlock",
+     "Waterfall.io"
+    ]
+   }
+  },
+  {
+   "category": "Developer, Infra and Data platforms",
+   "n": 10,
+   "oauth": 8,
+   "key_or_token": 9,
+   "self_serve": 10,
+   "gated": 0,
+   "ready": 10,
+   "limited": 0,
+   "outreach": 0,
+   "infeasible": 0,
+   "mcp_official": 5,
+   "verdicts": {
+    "Ready to build": [
+     "GitHub",
+     "Vercel",
+     "Netlify",
+     "Cloudflare",
+     "Supabase",
+     "Neo4j",
+     "Snowflake",
+     "MongoDB Atlas",
+     "Datadog",
+     "Sentry"
+    ],
+    "Buildable with limitations": [],
+    "Requires outreach / partnership": [],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Productivity and Project Management",
+   "n": 10,
+   "oauth": 9,
+   "key_or_token": 10,
+   "self_serve": 9,
+   "gated": 0,
+   "ready": 9,
+   "limited": 1,
+   "outreach": 0,
+   "infeasible": 0,
+   "mcp_official": 8,
+   "verdicts": {
+    "Ready to build": [
+     "Notion",
+     "Airtable",
+     "Linear",
+     "Jira",
+     "Asana",
+     "Monday.com",
+     "ClickUp",
+     "Coda",
+     "Harvest"
+    ],
+    "Buildable with limitations": [
+     "Smartsheet"
+    ],
+    "Requires outreach / partnership": [],
+    "Not currently feasible": [],
+    "Insufficient evidence": []
+   }
+  },
+  {
+   "category": "Finance and Fintech",
+   "n": 10,
+   "oauth": 6,
+   "key_or_token": 5,
+   "self_serve": 5,
+   "gated": 3,
+   "ready": 5,
+   "limited": 2,
+   "outreach": 1,
+   "infeasible": 2,
+   "mcp_official": 5,
+   "verdicts": {
+    "Ready to build": [
+     "Stripe",
+     "Plaid",
+     "Binance",
+     "Xero",
+     "PitchBook"
+    ],
+    "Buildable with limitations": [
+     "Brex",
+     "Ramp"
+    ],
+    "Requires outreach / partnership": [
+     "QuickBooks"
+    ],
+    "Not currently feasible": [],
+    "Insufficient evidence": [
+     "Paygent Connect",
+     "iPayX"
+    ]
+   }
+  },
+  {
+   "category": "AI, Research and Media-native",
+   "n": 10,
+   "oauth": 4,
+   "key_or_token": 6,
+   "self_serve": 7,
+   "gated": 1,
+   "ready": 4,
+   "limited": 3,
+   "outreach": 0,
+   "infeasible": 3,
+   "mcp_official": 4,
+   "verdicts": {
+    "Ready to build": [
+     "NotebookLM",
+     "Consensus",
+     "Reducto",
+     "Grain"
+    ],
+    "Buildable with limitations": [
+     "Fathom",
+     "Devin",
+     "YouTube Transcript"
+    ],
+    "Requires outreach / partnership": [],
+    "Not currently feasible": [
+     "Mermaid CLI"
+    ],
+    "Insufficient evidence": [
+     "Otter AI",
+     "higgsfield"
+    ]
+   }
+  }
+ ],
+ "oauth_rank": [
+  [
+   "CRM and Sales",
+   9,
+   10
+  ],
+  [
+   "Ecommerce",
+   9,
+   10
+  ],
+  [
+   "Productivity and Project Management",
+   9,
+   10
+  ],
+  [
+   "Marketing, Ads, Email and Social",
+   8,
+   10
+  ],
+  [
+   "Developer, Infra and Data platforms",
+   8,
+   10
+  ],
+  [
+   "Communications and Messaging",
+   7,
+   10
+  ],
+  [
+   "Finance and Fintech",
+   6,
+   10
+  ],
+  [
+   "Support and Helpdesk",
+   5,
+   10
+  ],
+  [
+   "AI, Research and Media-native",
+   4,
+   10
+  ],
+  [
+   "Data, SEO and Scraping",
+   1,
+   10
+  ]
+ ],
+ "selfserve_rank": [
+  [
+   "Communications and Messaging",
+   10,
+   10
+  ],
+  [
+   "Developer, Infra and Data platforms",
+   10,
+   10
+  ],
+  [
+   "CRM and Sales",
+   9,
+   10
+  ],
+  [
+   "Support and Helpdesk",
+   9,
+   10
+  ],
+  [
+   "Productivity and Project Management",
+   9,
+   10
+  ],
+  [
+   "AI, Research and Media-native",
+   7,
+   10
+  ],
+  [
+   "Ecommerce",
+   6,
+   10
+  ],
+  [
+   "Data, SEO and Scraping",
+   6,
+   10
+  ],
+  [
+   "Finance and Fintech",
+   5,
+   10
+  ],
+  [
+   "Marketing, Ads, Email and Social",
+   4,
+   10
+  ]
+ ],
+ "multi_auth_apps": [
+  "HubSpot",
+  "Pipedrive",
+  "Attio",
+  "Podio",
+  "Close",
+  "Copper",
+  "DealCloud",
+  "Zendesk",
+  "Intercom",
+  "Front",
+  "Plain",
+  "Gorgias",
+  "Gladly",
+  "Slack",
+  "Twilio",
+  "Lark (Larksuite)",
+  "Aircall",
+  "Vonage",
+  "Google Ads",
+  "GoHighLevel",
+  "Mailchimp",
+  "Klaviyo",
+  "Shopify",
+  "WooCommerce",
+  "BigCommerce",
+  "Magento (Adobe Commerce)",
+  "Squarespace",
+  "Ahrefs",
+  "Apify",
+  "GitHub",
+  "Vercel",
+  "Netlify",
+  "Supabase",
+  "Neo4j",
+  "Snowflake",
+  "MongoDB Atlas",
+  "Sentry",
+  "Notion",
+  "Airtable",
+  "Linear",
+  "Jira",
+  "Asana",
+  "Monday.com",
+  "ClickUp",
+  "Coda",
+  "Smartsheet",
+  "Harvest",
+  "Stripe",
+  "Plaid",
+  "Brex",
+  "NotebookLM",
+  "Fathom",
+  "Consensus",
+  "Devin",
+  "YouTube Transcript",
+  "Grain"
+ ],
+ "easy_wins": [
+  "HubSpot",
+  "Pipedrive",
+  "Attio",
+  "Twenty",
+  "Podio",
+  "Zoho CRM",
+  "Close",
+  "Copper",
+  "Zendesk",
+  "Intercom",
+  "Freshdesk",
+  "Front",
+  "LiveAgent",
+  "Help Scout",
+  "Gorgias",
+  "Gladly",
+  "Slack",
+  "Twilio",
+  "Zoho Cliq",
+  "Lark (Larksuite)",
+  "Pumble",
+  "Discord",
+  "Telegram",
+  "WhatsApp Business",
+  "Vonage",
+  "Mailchimp",
+  "Klaviyo",
+  "systeme.io",
+  "SendGrid",
+  "Shopify",
+  "WooCommerce",
+  "BigCommerce",
+  "Ecwid",
+  "Gumroad",
+  "DataForSEO",
+  "MrScraper",
+  "Apify",
+  "Bright Data",
+  "GitHub",
+  "Vercel",
+  "Netlify",
+  "Cloudflare",
+  "Supabase",
+  "Neo4j",
+  "Snowflake",
+  "MongoDB Atlas",
+  "Datadog",
+  "Sentry",
+  "Notion",
+  "Airtable",
+  "Linear",
+  "Jira",
+  "Asana",
+  "Monday.com",
+  "ClickUp",
+  "Coda",
+  "Harvest",
+  "Stripe",
+  "Plaid",
+  "Binance",
+  "Xero",
+  "PitchBook",
+  "NotebookLM",
+  "Consensus",
+  "Reducto",
+  "Grain"
+ ],
+ "easy_no_official_mcp": [
+  "HubSpot",
+  "Twenty",
+  "Podio",
+  "Zoho CRM",
+  "Zendesk",
+  "Intercom",
+  "Front",
+  "LiveAgent",
+  "Gladly",
+  "Slack",
+  "Zoho Cliq",
+  "Pumble",
+  "Discord",
+  "Telegram",
+  "WhatsApp Business",
+  "Klaviyo",
+  "SendGrid",
+  "WooCommerce",
+  "BigCommerce",
+  "Netlify",
+  "Supabase",
+  "MongoDB Atlas",
+  "Datadog",
+  "Sentry",
+  "Harvest",
+  "Binance",
+  "PitchBook",
+  "NotebookLM",
+  "Consensus",
+  "Grain"
+ ],
+ "partnerships": [
+  {
+   "app": "DealCloud",
+   "blocker": "Potential paid\u2011plan requirement or lack of publicly available sign\u2011up for API credentials."
+  },
+  {
+   "app": "Pylon",
+   "blocker": "None"
+  },
+  {
+   "app": "Google Ads",
+   "blocker": "A Google\u2011issued developer token is required and must be approved via application, which is not self\u2011serve."
+  },
+  {
+   "app": "Salesforce Commerce Cloud",
+   "blocker": "Partner or sales contact required to obtain API access credentials"
+  },
+  {
+   "app": "Clay",
+   "blocker": "None"
+  },
+  {
+   "app": "QuickBooks",
+   "blocker": "App review / partner approval"
+  }
+ ],
+ "good_api_hard_access": [
+  "DealCloud",
+  "Pylon",
+  "Google Ads",
+  "Meta Ads",
+  "LinkedIn Ads",
+  "GoHighLevel",
+  "Pinterest",
+  "Threads (Meta)",
+  "Salesforce Commerce Cloud",
+  "Amazon Selling Partner",
+  "Clay",
+  "QuickBooks",
+  "Brex",
+  "Ramp"
+ ],
+ "investigate": [
+  {
+   "app": "Squarespace",
+   "why": "Unclear access model \u2013 possible partner\u2011only gating."
+  },
+  {
+   "app": "fanbasis",
+   "why": "No public API documentation or credential acquisition process identified."
+  },
+  {
+   "app": "Firecrawl",
+   "why": "Insufficient documentation on authentication and pricing for full features"
+  },
+  {
+   "app": "Sherlock",
+   "why": "Insufficient documentation"
+  },
+  {
+   "app": "Waterfall.io",
+   "why": "Insufficient documentation"
+  },
+  {
+   "app": "Paygent Connect",
+   "why": "Insufficient documentation"
+  },
+  {
+   "app": "iPayX",
+   "why": "Insufficient documentation"
+  },
+  {
+   "app": "Otter AI",
+   "why": "No documented self\u2011serve API authentication or credential acquisition process."
+  },
+  {
+   "app": "higgsfield",
+   "why": "No clear public API documentation"
+  },
+  {
+   "app": "Mermaid CLI",
+   "why": "No public HTTP API"
+  }
+ ],
+ "composio": {
+  "with_toolkit": 79,
+  "without_toolkit": [
+   "DealCloud",
+   "LiveAgent",
+   "Gladly",
+   "Vonage",
+   "systeme.io",
+   "WooCommerce",
+   "Salesforce Commerce Cloud",
+   "Magento (Adobe Commerce)",
+   "Squarespace",
+   "Ecwid",
+   "Amazon Selling Partner",
+   "fanbasis",
+   "SE Ranking",
+   "Sherlock",
+   "Waterfall.io",
+   "Binance",
+   "Paygent Connect",
+   "iPayX",
+   "Reducto",
+   "Mermaid CLI",
+   "YouTube Transcript"
+  ],
+  "net_new_buildable": [
+   "LiveAgent",
+   "Gladly",
+   "Vonage",
+   "systeme.io",
+   "WooCommerce",
+   "Magento (Adobe Commerce)",
+   "Ecwid",
+   "Amazon Selling Partner",
+   "SE Ranking",
+   "Binance",
+   "Reducto",
+   "YouTube Transcript"
+  ],
+  "by_category": {
+   "CRM and Sales": 9,
+   "Support and Helpdesk": 8,
+   "Communications and Messaging": 9,
+   "Marketing, Ads, Email and Social": 9,
+   "Ecommerce": 3,
+   "Data, SEO and Scraping": 7,
+   "Developer, Infra and Data platforms": 10,
+   "Productivity and Project Management": 10,
+   "Finance and Fintech": 7,
+   "AI, Research and Media-native": 7
+  }
+ },
+ "confidence_counts": {
+  "High": 61,
+  "Medium": 27,
+  "Low": 12
+ }
+}

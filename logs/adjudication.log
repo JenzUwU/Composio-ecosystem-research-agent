@@ -1,0 +1,309 @@
+2026-11-24 20:06:13,123 INFO adjudicator: 0 done, 3 to adjudicate
+2026-11-24 20:07:20,933 INFO adjudicator: [  3] Pipedrive                  Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-120b 65s
+2026-11-24 20:08:25,350 INFO adjudicator: [ 61] GitHub                     Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 64s
+2026-11-24 20:10:25,410 INFO adjudicator: [ 92] Otter AI                   Insufficient evidence            Admin approval / app review    tools=['read_fetched_page'] model=openai/gpt-oss-120b 120s
+2026-11-24 20:10:25,412 INFO adjudicator: batch checkpoint: 3/100 adjudicated | usage {'calls': 9, 'prompt_tokens': 17801, 'completion_tokens': 2960}
+2026-11-24 20:10:25,418 INFO adjudicator: finished: 3/100 adjudicated | usage {'calls': 9, 'prompt_tokens': 17801, 'completion_tokens': 2960}
+2026-11-24 20:10:49,938 INFO adjudicator: 3 done, 1 to adjudicate
+2026-11-24 20:10:59,963 INFO adjudicator: [ 21] Slack                      Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 4s
+2026-11-24 20:10:59,967 INFO adjudicator: batch checkpoint: 4/100 adjudicated | usage {'calls': 2, 'prompt_tokens': 3818, 'completion_tokens': 868}
+2026-11-24 20:10:59,967 INFO adjudicator: finished: 4/100 adjudicated | usage {'calls': 2, 'prompt_tokens': 3818, 'completion_tokens': 868}
+2026-11-24 20:11:07,952 INFO adjudicator: 4 done, 96 to adjudicate
+2026-11-24 20:11:18,092 INFO adjudicator: [  1] Salesforce                 Buildable with limitations       Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 5s
+2026-11-24 20:12:20,033 INFO adjudicator: [  2] HubSpot                    Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:13:22,412 INFO adjudicator: [  4] Attio                      Buildable with limitations       Admin approval / app review    tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:14:24,812 INFO adjudicator: [  5] Twenty                     Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:15:27,373 INFO adjudicator: [  6] Podio                      Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 63s
+2026-11-24 20:16:29,350 INFO adjudicator: [  7] Zoho CRM                   Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:17:31,443 INFO adjudicator: [  8] Close                      Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:18:33,513 INFO adjudicator: [  9] Copper                     Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:19:35,661 ERROR adjudicator: [ 10] DealCloud failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '/mcp_available' does not validate with /properties/mcp_available/enum: value must be one of 'Official', 'Third-party/community', 'None found', 'Unclear'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n  "description": "DealCloud provides a public REST API documented at api.docs.dealcloud.com with support for OAuth2, API Key, and Basic authentication. Credentials can be obtained via a free developer account.",\n  "api_type": ["REST"],\n  "api_breadth": "Broad",\n  "auth_methods": ["OAuth2", "API Key", "Basic"],\n  "credential_access": "Self-serve (free)",\n  "mcp_available": "None",\n  "mcp_detail": "No MCP entry found in the registry and no community MCP listed.",\n  "buildability_verdict": "Ready to build",\n  "primary_blocker": "",\n  "blocker_category": "None",\n  "confidence": "High",\n  "requires_human_review": false,\n  "notes": "The API documentation is publicly accessible and describes multiple auth methods, indicating self‑serve access.",\n  "evidence": [\n    {\n      "field": "api_type",\n      "claim": "REST API documented",\n      "url": "https://api.docs.dealcloud.com/"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports OAuth2",\n      "url": "https://api.docs.dealcloud.com/docs/token"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports API Key",\n      "url": "https://api.docs.dealcloud.com/"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports Basic Authentication",\n      "url": "https://api.docs.dealcloud.com/sdk/intapp-rest-client/configuration/authentication"\n    },\n    {\n      "field": "credential_access",\n      "claim": "Credentials obtainable via free developer account (self‑serve)",\n      "url": "https://api.docs.dealcloud.com/docs/apikeys"\n    },\n    {\n      "field": "mcp_available",\n      "claim": "No MCP entry found in registry",\n      "url": "https://registry.modelcontextprotocol.io/v0/servers?search=dealcloud&limit=60"\n    }\n  ]\n}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    r = adjudicate(a, crawl[a["id"]], ck.get(a["id"]), llm, cc)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    result = llm.structured(clean, SCHEMA, name="app_adjudication", reasoning_effort="low", max_completion_tokens=2200)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '/mcp_available' does not validate with /properties/mcp_available/enum: value must be one of 'Official', 'Third-party/community', 'None found', 'Unclear'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{\n  "description": "DealCloud provides a public REST API documented at api.docs.dealcloud.com with support for OAuth2, API Key, and Basic authentication. Credentials can be obtained via a free developer account.",\n  "api_type": ["REST"],\n  "api_breadth": "Broad",\n  "auth_methods": ["OAuth2", "API Key", "Basic"],\n  "credential_access": "Self-serve (free)",\n  "mcp_available": "None",\n  "mcp_detail": "No MCP entry found in the registry and no community MCP listed.",\n  "buildability_verdict": "Ready to build",\n  "primary_blocker": "",\n  "blocker_category": "None",\n  "confidence": "High",\n  "requires_human_review": false,\n  "notes": "The API documentation is publicly accessible and describes multiple auth methods, indicating self‑serve access.",\n  "evidence": [\n    {\n      "field": "api_type",\n      "claim": "REST API documented",\n      "url": "https://api.docs.dealcloud.com/"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports OAuth2",\n      "url": "https://api.docs.dealcloud.com/docs/token"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports API Key",\n      "url": "https://api.docs.dealcloud.com/"\n    },\n    {\n      "field": "auth_methods",\n      "claim": "Supports Basic Authentication",\n      "url": "https://api.docs.dealcloud.com/sdk/intapp-rest-client/configuration/authentication"\n    },\n    {\n      "field": "credential_access",\n      "claim": "Credentials obtainable via free developer account (self‑serve)",\n      "url": "https://api.docs.dealcloud.com/docs/apikeys"\n    },\n    {\n      "field": "mcp_available",\n      "claim": "No MCP entry found in registry",\n      "url": "https://registry.modelcontextprotocol.io/v0/servers?search=dealcloud&limit=60"\n    }\n  ]\n}'}}
+2026-11-24 20:19:39,229 INFO adjudicator: [ 11] Zendesk                    Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 4s
+2026-11-24 20:19:39,232 INFO adjudicator: batch checkpoint: 13/100 adjudicated | usage {'calls': 19, 'prompt_tokens': 33896, 'completion_tokens': 7286}
+2026-11-24 20:20:42,854 INFO adjudicator: [ 12] Intercom                   Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 64s
+2026-11-24 20:21:45,222 INFO adjudicator: [ 13] Freshdesk                  Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:22:47,550 INFO adjudicator: [ 14] Front                      Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:23:49,577 INFO adjudicator: [ 15] Pylon                      Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:24:51,984 INFO adjudicator: [ 16] LiveAgent                  Buildable with limitations       Self-serve (paid plan required) tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:25:54,380 INFO adjudicator: [ 17] Plain                      Buildable with limitations       Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:26:56,082 INFO adjudicator: [ 18] Help Scout                 Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:27:58,105 INFO adjudicator: [ 19] Gorgias                    Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:29:00,351 INFO adjudicator: [ 20] Gladly                     Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:30:02,371 INFO adjudicator: [ 22] Twilio                     Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:30:02,373 INFO adjudicator: batch checkpoint: 23/100 adjudicated | usage {'calls': 39, 'prompt_tokens': 67799, 'completion_tokens': 14765}
+2026-11-24 20:31:05,018 INFO adjudicator: [ 23] Zoho Cliq                  Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:32:07,326 INFO adjudicator: [ 24] Lark (Larksuite)           Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:33:09,395 INFO adjudicator: [ 25] Pumble                     Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:34:12,332 ERROR adjudicator: [ 26] Discord failed: Error code: 400 - {'error': {'message': "Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'output_parse_failed', 'failed_generation': 'Now produce JSON.'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Parsing failed. The model generated output that could not be parsed. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'output_parse_failed', 'failed_generation': 'Now produce JSON.'}}
+2026-11-24 20:34:15,788 INFO adjudicator: [ 27] Telegram                   Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 3s
+2026-11-24 20:35:18,312 INFO adjudicator: [ 28] WhatsApp Business          Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:36:21,082 INFO adjudicator: [ 29] Aircall                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:37:22,854 INFO adjudicator: [ 30] Vonage                     Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:38:26,288 INFO adjudicator: [ 31] Google Ads                 Requires outreach / partnership  Admin approval / app review    tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:39:28,712 INFO adjudicator: [ 32] Meta Ads                   Buildable with limitations       Admin approval / app review    tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:39:28,719 INFO adjudicator: batch checkpoint: 32/100 adjudicated | usage {'calls': 58, 'prompt_tokens': 100954, 'completion_tokens': 21716}
+2026-11-24 20:40:31,522 INFO adjudicator: [ 33] LinkedIn Ads               Buildable with limitations       Admin approval / app review    tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:41:33,772 INFO adjudicator: [ 34] GoHighLevel                Buildable with limitations       Admin approval / app review    tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:42:36,515 INFO adjudicator: [ 35] Mailchimp                  Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:43:39,016 INFO adjudicator: [ 36] Klaviyo                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:44:40,962 INFO adjudicator: [ 37] systeme.io                 Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:45:43,201 INFO adjudicator: [ 38] Pinterest                  Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:46:45,654 INFO adjudicator: [ 39] Threads (Meta)             Buildable with limitations       Admin approval / app review    tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:47:47,754 INFO adjudicator: [ 40] SendGrid                   Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:48:49,843 INFO adjudicator: [ 41] Shopify                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:49:53,014 INFO adjudicator: [ 42] WooCommerce                Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:49:53,021 INFO adjudicator: batch checkpoint: 42/100 adjudicated | usage {'calls': 78, 'prompt_tokens': 136172, 'completion_tokens': 29230}
+2026-11-24 20:50:55,664 INFO adjudicator: [ 43] BigCommerce                Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 63s
+2026-11-24 20:51:59,456 INFO adjudicator: [ 44] Salesforce Commerce Cloud  Requires outreach / partnership  Partnership / contact-sales gated tools=['read_fetched_page'] model=openai/gpt-oss-120b 64s
+2026-11-24 20:53:02,955 INFO adjudicator: [ 45] Magento (Adobe Commerce)   Buildable with limitations       Self-serve (paid plan required) tools=[] model=openai/gpt-oss-120b 63s
+2026-11-24 20:54:07,042 INFO adjudicator: [ 46] Squarespace                Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-120b 64s
+2026-11-24 20:55:09,342 INFO adjudicator: [ 47] Ecwid                      Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 20:55:12,413 INFO adjudicator: [ 48] Gumroad                    Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 3s
+2026-11-24 20:56:14,443 INFO adjudicator: [ 49] Amazon Selling Partner     Buildable with limitations       Admin approval / app review    tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:57:16,175 INFO adjudicator: [ 50] fanbasis                   Insufficient evidence            Unclear                        tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:58:18,468 INFO adjudicator: [ 51] DataForSEO                 Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:59:20,582 INFO adjudicator: [ 52] SE Ranking                 Buildable with limitations       Self-serve (paid plan required) tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 20:59:20,582 INFO adjudicator: batch checkpoint: 52/100 adjudicated | usage {'calls': 98, 'prompt_tokens': 167782, 'completion_tokens': 36365}
+2026-11-24 21:00:23,034 INFO adjudicator: [ 53] Ahrefs                     Buildable with limitations       Self-serve (paid plan required) tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 21:01:25,442 INFO adjudicator: [ 54] MrScraper                  Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-120b 62s
+2026-11-24 21:02:27,728 INFO adjudicator: [ 55] Apify                      Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-120b 62s
+2026-11-24 21:02:28,543 WARNING groq_client: daily limit on openai/gpt-oss-120b; switching to openai/gpt-oss-20b
+2026-11-24 21:03:29,490 INFO adjudicator: [ 56] Firecrawl                  Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:04:31,010 INFO adjudicator: [ 57] Bright Data                Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:04:33,992 ERROR adjudicator: [ 58] Sherlock failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Sherlock is an open‑source project for social media user discovery. The repository contains no documentation or code for a publicly accessible REST/GraphQL API, nor any authentication scheme for external developers. Community MCP registry entries suggest only community‑hosted wrappers, not an official public endpoint.","api_type":[],"api_breadth":"Unknown","auth_methods":[],"credential_access":"Unclear","buildability_verdict":"Insufficient evidence","primary_blocker":"Insufficient documentation","blocker_category":"Insufficient documentation","mcp_available":"Third-party/community","mcp_detail":"Community‑hosted MCP wrappers: com.hostsherlock/mcp, io.github.FGC-Shreyansh-Chachaundiya/codesherlock-mcp-server.","evidence":[{"field":"api_type","claim":"No public API documented","url":"https://github.com/sherlock-project/sherlock"},{"field":"mcp_available","claim":"Community MCP wrappers exist","url":"https://registry.modelcontextprotocol.io/v0/servers?search=sherlock&limit=60"}],"confidence":"Low","requires_human_review":true}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Sherlock is an open‑source project for social media user discovery. The repository contains no documentation or code for a publicly accessible REST/GraphQL API, nor any authentication scheme for external developers. Community MCP registry entries suggest only community‑hosted wrappers, not an official public endpoint.","api_type":[],"api_breadth":"Unknown","auth_methods":[],"credential_access":"Unclear","buildability_verdict":"Insufficient evidence","primary_blocker":"Insufficient documentation","blocker_category":"Insufficient documentation","mcp_available":"Third-party/community","mcp_detail":"Community‑hosted MCP wrappers: com.hostsherlock/mcp, io.github.FGC-Shreyansh-Chachaundiya/codesherlock-mcp-server.","evidence":[{"field":"api_type","claim":"No public API documented","url":"https://github.com/sherlock-project/sherlock"},{"field":"mcp_available","claim":"Community MCP wrappers exist","url":"https://registry.modelcontextprotocol.io/v0/servers?search=sherlock&limit=60"}],"confidence":"Low","requires_human_review":true}'}}
+2026-11-24 21:05:32,453 INFO adjudicator: [ 59] Waterfall.io               Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 58s
+2026-11-24 21:06:33,988 INFO adjudicator: [ 60] Clay                       Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:07:35,794 INFO adjudicator: [ 62] Vercel                     Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:08:37,387 INFO adjudicator: [ 63] Netlify                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:08:37,392 INFO adjudicator: batch checkpoint: 61/100 adjudicated | usage {'calls': 117, 'prompt_tokens': 200517, 'completion_tokens': 41801}
+2026-11-24 21:09:38,747 INFO adjudicator: [ 64] Cloudflare                 Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:10:40,082 INFO adjudicator: [ 65] Supabase                   Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:11:41,606 ERROR adjudicator: [ 66] Neo4j failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'confidence', 'requires_human_review', 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Neo4j Aura offers a public REST and GraphQL API for database operations. Authentication uses OAuth\u202f2.0 Bearer tokens (and Basic auth for token retrieval). The API is self‑serve via a free trial, with additional paid tiers. The vendor publishes an official MCP implementation (io.github.neo4j-contrib/gds-agent).","api_type":["REST","GraphQL"],"auth_methods":["OAuth2","Basic"],"api_breadth":"Broad","credential_access":"Self-serve (free trial / sandbox)","buildability_verdict":"Ready to build","mcp_available":"Official","mcp_detail":"Official MCP implementation: io.github.neo4j-contrib/gds-agent","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"api_type","claim":"REST API documented","url":"https://neo4j.com/docs/aura/api/authentication/"},{"field":"api_type","claim":"GraphQL API documented","url":"https://neo4j.com/docs/aura/platform/api/overview/"},"",{"field":"auth_methods","claim":"Supports OAuth2","url":"https://neo4j.com/docs/aura/api/authentication/"},",",{"field":"auth_methods","claim":"Supports Basic","url":"https://neo4j.com/docs/aura/api/authentication/"},",",{"field":"credential_access","claim":"Free trial available","url":"https://neo4j.com/docs/aura/platform/api/overview/"},",",{"field":"credential_access","claim":"Paid plan available","url":"https://neo4j.com/docs/query-api/current/"},",",{"field":"mcp_available","claim":"MCP mentioned in vendor docs","url":"https://neo4j.com/docs/aura/platform/api/overview/"},",",{"field":"mcp_available","claim":"MCP registry entry","url":"https://registry.modelcontextprotocol.io/v0/servers?search=neo4j&limit=60"},"]","confidence",":","High","requires_human_review",":false","notes",":","All required evidence sourced from Neo4j documentation and MCP registry. No indications of partner‑only or enterprise‑only gating."]}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'confidence', 'requires_human_review', 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Neo4j Aura offers a public REST and GraphQL API for database operations. Authentication uses OAuth\u202f2.0 Bearer tokens (and Basic auth for token retrieval). The API is self‑serve via a free trial, with additional paid tiers. The vendor publishes an official MCP implementation (io.github.neo4j-contrib/gds-agent).","api_type":["REST","GraphQL"],"auth_methods":["OAuth2","Basic"],"api_breadth":"Broad","credential_access":"Self-serve (free trial / sandbox)","buildability_verdict":"Ready to build","mcp_available":"Official","mcp_detail":"Official MCP implementation: io.github.neo4j-contrib/gds-agent","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"api_type","claim":"REST API documented","url":"https://neo4j.com/docs/aura/api/authentication/"},{"field":"api_type","claim":"GraphQL API documented","url":"https://neo4j.com/docs/aura/platform/api/overview/"},"",{"field":"auth_methods","claim":"Supports OAuth2","url":"https://neo4j.com/docs/aura/api/authentication/"},",",{"field":"auth_methods","claim":"Supports Basic","url":"https://neo4j.com/docs/aura/api/authentication/"},",",{"field":"credential_access","claim":"Free trial available","url":"https://neo4j.com/docs/aura/platform/api/overview/"},",",{"field":"credential_access","claim":"Paid plan available","url":"https://neo4j.com/docs/query-api/current/"},",",{"field":"mcp_available","claim":"MCP mentioned in vendor docs","url":"https://neo4j.com/docs/aura/platform/api/overview/"},",",{"field":"mcp_available","claim":"MCP registry entry","url":"https://registry.modelcontextprotocol.io/v0/servers?search=neo4j&limit=60"},"]","confidence",":","High","requires_human_review",":false","notes",":","All required evidence sourced from Neo4j documentation and MCP registry. No indications of partner‑only or enterprise‑only gating."]}'}}
+2026-11-24 21:11:43,922 INFO adjudicator: [ 67] Snowflake                  Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-20b 2s
+2026-11-24 21:12:44,889 INFO adjudicator: [ 68] MongoDB Atlas              Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:13:46,910 INFO adjudicator: [ 69] Datadog                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:14:48,539 INFO adjudicator: [ 70] Sentry                     Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:15:50,082 INFO adjudicator: [ 71] Notion                     Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:16:51,407 INFO adjudicator: [ 72] Airtable                   Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:17:52,906 INFO adjudicator: [ 73] Linear                     Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:17:52,912 INFO adjudicator: batch checkpoint: 70/100 adjudicated | usage {'calls': 136, 'prompt_tokens': 235218, 'completion_tokens': 46952}
+2026-11-24 21:18:54,162 ERROR adjudicator: [ 74] Jira failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Jira Cloud provides a publicly documented REST API (v3) that can be accessed using API tokens (Basic Auth), OAuth\u202f2.0 3‑LO, and personal access tokens. The API is fully self‑serve, no sales or enterprise gating, and has a community‑published MCP integration.","api_type":["REST"],"api_breadth":"Broad","auth_methods":["API Key","OAuth2","Bearer Token","Basic"],"credential_access":"Self-serve (free)","mcp_available":"Third-party/community","mcp_detail":"Community MCPs exist on the registry (e.g., com.mcparmory/atlassian-jira).","buildability_verdict":"Ready to build","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Supports API Key via Basic Auth","url":"https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/"},{"field":"auth_methods","claim":"Supports OAuth2 3‑LO","url":"https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/"},{"field":"auth_methods","claim":"Supports Personal Access Token (Basic Auth)","url":"https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/"},{"field":"api_type","claim":"REST API documented","url":"https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"},{"field":"mcp_available","claim":"Community MCP listed","url":"https://registry.modelcontextprotocol.io/v0/servers?search=jira&limit=60"}],"confidence":"High","requires_human_review":false}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Jira Cloud provides a publicly documented REST API (v3) that can be accessed using API tokens (Basic Auth), OAuth\u202f2.0 3‑LO, and personal access tokens. The API is fully self‑serve, no sales or enterprise gating, and has a community‑published MCP integration.","api_type":["REST"],"api_breadth":"Broad","auth_methods":["API Key","OAuth2","Bearer Token","Basic"],"credential_access":"Self-serve (free)","mcp_available":"Third-party/community","mcp_detail":"Community MCPs exist on the registry (e.g., com.mcparmory/atlassian-jira).","buildability_verdict":"Ready to build","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Supports API Key via Basic Auth","url":"https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/"},{"field":"auth_methods","claim":"Supports OAuth2 3‑LO","url":"https://developer.atlassian.com/cloud/jira/platform/oauth-2-3lo-apps/"},{"field":"auth_methods","claim":"Supports Personal Access Token (Basic Auth)","url":"https://developer.atlassian.com/cloud/jira/platform/basic-auth-for-rest-apis/"},{"field":"api_type","claim":"REST API documented","url":"https://developer.atlassian.com/cloud/jira/platform/rest/v3/intro/"},{"field":"mcp_available","claim":"Community MCP listed","url":"https://registry.modelcontextprotocol.io/v0/servers?search=jira&limit=60"}],"confidence":"High","requires_human_review":false}'}}
+2026-11-24 21:18:56,590 INFO adjudicator: [ 75] Asana                      Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 2s
+2026-11-24 21:19:58,032 INFO adjudicator: [ 76] Monday.com                 Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:20:58,904 INFO adjudicator: [ 77] ClickUp                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:22:00,420 INFO adjudicator: [ 78] Coda                       Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:23:02,244 INFO adjudicator: [ 79] Smartsheet                 Buildable with limitations       Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:24:03,644 ERROR adjudicator: [ 80] Harvest failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'confidence', 'requires_human_review', 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Harvest provides a RESTful API (v2) that uses OAuth2, Basic Auth, or Personal Access Tokens for authentication. Developers can create a free 30‑day trial account to obtain an API key and start making requests. The API is fully documented on the Harvest Help Center and no partner approval or enterprise contract is required.","api_breadth":"Moderate","api_type":["REST"],"auth_methods":["OAuth2","Basic","Personal Access Token"],"credential_access":"Self-serve (free trial / sandbox)","mcp_available":"None found","mcp_detail":"No official MCP entry found in the Model Context Protocol registry.","buildability_verdict":"Ready to build","primary_blocker":"","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Supports OAuth2, Basic Auth, and Personal Access Token","url":"https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/"},"",{"field":"credential_access","claim":"Free 30-day trial available","url":"https://harvestapp.com"},"",{"field":"api_type","claim":"REST API documented","url":"https://help.getharvest.com/api-v2/introduction/overview/general/"},"",{"field":"mcp_available","claim":"No official MCP entry found","url":"https://registry.modelcontextprotocol.io/v0/servers?search=harvest&limit=60"},"]","confidence",":","High","requires_human_review",":false","notes",":","All evidence from official documentation and registry confirms self‑serve access and full REST support."]}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'confidence', 'requires_human_review', 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Harvest provides a RESTful API (v2) that uses OAuth2, Basic Auth, or Personal Access Tokens for authentication. Developers can create a free 30‑day trial account to obtain an API key and start making requests. The API is fully documented on the Harvest Help Center and no partner approval or enterprise contract is required.","api_breadth":"Moderate","api_type":["REST"],"auth_methods":["OAuth2","Basic","Personal Access Token"],"credential_access":"Self-serve (free trial / sandbox)","mcp_available":"None found","mcp_detail":"No official MCP entry found in the Model Context Protocol registry.","buildability_verdict":"Ready to build","primary_blocker":"","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Supports OAuth2, Basic Auth, and Personal Access Token","url":"https://help.getharvest.com/api-v2/authentication-api/authentication/authentication/"},"",{"field":"credential_access","claim":"Free 30-day trial available","url":"https://harvestapp.com"},"",{"field":"api_type","claim":"REST API documented","url":"https://help.getharvest.com/api-v2/introduction/overview/general/"},"",{"field":"mcp_available","claim":"No official MCP entry found","url":"https://registry.modelcontextprotocol.io/v0/servers?search=harvest&limit=60"},"]","confidence",":","High","requires_human_review",":false","notes",":","All evidence from official documentation and registry confirms self‑serve access and full REST support."]}'}}
+2026-11-24 21:24:05,622 INFO adjudicator: [ 81] Stripe                     Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-20b 2s
+2026-11-24 21:24:06,362 WARNING groq_client: rate limited; sleeping 4.0s (attempt 1)
+2026-11-24 21:25:08,292 ERROR adjudicator: [ 82] Plaid failed: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Plaid offers a public REST API for accessing financial data. Developers can sign up for a free sandbox to obtain test credentials, while production access requires API keys obtained after registration. No partner‑only gating is required.","api_breadth":"Broad","api_type":["REST"],"auth_methods":["API Key","Bearer Token"],"credential_access":"Self-serve (free trial / sandbox)","mcp_available":"Third-party/community","mcp_detail":"Community‑maintained MCPs exist (e.g., io.github.pipeworx-io/plaid) but no official vendor‑hosted MCP is available.","buildability_verdict":"Ready to build","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Plaid’s API uses API Key (Client ID & Secret) passed in headers, which act as bearer tokens for authentication.","url":"https://plaid.com/docs/api/"} ,{"field":"credential_access","claim":"Developers can access a free sandbox environment to test the API without a paid plan.","url":"https://plaid.com/docs/api/"} ,{"field":"mcp_available","claim":"Community‑maintained MCPs are available on the registry.","url":"https://registry.modelcontextprotocol.io/v0/servers?search=plaid&limit=60"} ,{"field":"buildability_verdict","claim":"The API is fully documented and publicly accessible via self‑serve credentials.","url":"https://plaid.com/docs/api/"} ] ,"confidence":"High","requires_human_review":false}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': "Generated JSON does not match the expected schema. Please adjust your prompt. See 'failed_generation' for more details. Error: jsonschema: '' does not validate with /required: missing properties: 'notes'", 'type': 'invalid_request_error', 'code': 'json_validate_failed', 'failed_generation': '{"description":"Plaid offers a public REST API for accessing financial data. Developers can sign up for a free sandbox to obtain test credentials, while production access requires API keys obtained after registration. No partner‑only gating is required.","api_breadth":"Broad","api_type":["REST"],"auth_methods":["API Key","Bearer Token"],"credential_access":"Self-serve (free trial / sandbox)","mcp_available":"Third-party/community","mcp_detail":"Community‑maintained MCPs exist (e.g., io.github.pipeworx-io/plaid) but no official vendor‑hosted MCP is available.","buildability_verdict":"Ready to build","primary_blocker":"None","blocker_category":"None","evidence":[{"field":"auth_methods","claim":"Plaid’s API uses API Key (Client ID & Secret) passed in headers, which act as bearer tokens for authentication.","url":"https://plaid.com/docs/api/"} ,{"field":"credential_access","claim":"Developers can access a free sandbox environment to test the API without a paid plan.","url":"https://plaid.com/docs/api/"} ,{"field":"mcp_available","claim":"Community‑maintained MCPs are available on the registry.","url":"https://registry.modelcontextprotocol.io/v0/servers?search=plaid&limit=60"} ,{"field":"buildability_verdict","claim":"The API is fully documented and publicly accessible via self‑serve credentials.","url":"https://plaid.com/docs/api/"} ] ,"confidence":"High","requires_human_review":false}'}}
+2026-11-24 21:26:08,653 INFO adjudicator: [ 83] Binance                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 60s
+2026-11-24 21:26:08,662 INFO adjudicator: batch checkpoint: 77/100 adjudicated | usage {'calls': 153, 'prompt_tokens': 264881, 'completion_tokens': 52567}
+2026-11-24 21:26:11,678 INFO adjudicator: [ 84] Paygent Connect            Insufficient evidence            Unclear                        tools=[] model=openai/gpt-oss-20b 3s
+2026-11-24 21:27:09,852 INFO adjudicator: [ 85] iPayX                      Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 58s
+2026-11-24 21:28:11,626 INFO adjudicator: [ 86] QuickBooks                 Requires outreach / partnership  Partnership / contact-sales gated tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:29:13,097 INFO adjudicator: [ 87] Xero                       Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:30:14,916 INFO adjudicator: [ 88] Brex                       Buildable with limitations       Admin approval / app review    tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:30:17,680 ERROR adjudicator: [ 89] Ramp failed: Error code: 400 - {'error': {'message': 'Tool choice is none, but model called a tool', 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '{"name": "read_fetched_page", "arguments": {"url":"https://docs.ramp.com/developer-api/v1/overview/introduction","keywords":["OAuth","API key","bearer"]}}'}}
+Traceback (most recent call last):
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 209, in main
+    llm = GroqLLM()
+                    
+  File "E:\COMPOSIO\composio-app-research\agent\llm_adjudicator.py", line 166, in adjudicate
+    try:
+         
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 128, in structured
+    resp = self.chat(messages, model=model, response_format=rf, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\agent\groq_client.py", line 92, in chat
+    resp = self.client.chat.completions.create(model=model, messages=messages, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\resources\chat\completions.py", line 466, in create
+    return self._post(
+           ^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1284, in post
+    return cast(ResponseT, self.request(cast_to, opts, stream=stream, stream_cls=stream_cls))
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "E:\COMPOSIO\composio-app-research\.venv\Lib\site-packages\groq\_base_client.py", line 1071, in request
+    raise self._make_status_error_from_response(err.response) from None
+groq.BadRequestError: Error code: 400 - {'error': {'message': 'Tool choice is none, but model called a tool', 'type': 'invalid_request_error', 'code': 'tool_use_failed', 'failed_generation': '{"name": "read_fetched_page", "arguments": {"url":"https://docs.ramp.com/developer-api/v1/overview/introduction","keywords":["OAuth","API key","bearer"]}}'}}
+2026-11-24 21:31:16,434 INFO adjudicator: [ 90] PitchBook                  Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-20b 59s
+2026-11-24 21:32:17,874 INFO adjudicator: [ 91] NotebookLM                 Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:33:21,167 INFO adjudicator: [ 93] Fathom                     Buildable with limitations       Self-serve (paid plan required) tools=['read_fetched_page'] model=openai/gpt-oss-20b 63s
+2026-11-24 21:34:22,666 INFO adjudicator: [ 94] Consensus                  Ready to build                   Self-serve (free)              tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:34:22,678 INFO adjudicator: batch checkpoint: 86/100 adjudicated | usage {'calls': 172, 'prompt_tokens': 295936, 'completion_tokens': 57648}
+2026-11-24 21:35:23,892 INFO adjudicator: [ 95] Reducto                    Requires outreach / partnership  Partnership / contact-sales gated tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:36:25,471 INFO adjudicator: [ 96] Devin                      Buildable with limitations       Self-serve (paid plan required) tools=['read_fetched_page'] model=openai/gpt-oss-20b 62s
+2026-11-24 21:37:26,805 INFO adjudicator: [ 97] higgsfield                 Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:37:29,634 INFO adjudicator: [ 98] Mermaid CLI                Not currently feasible           Unclear                        tools=[] model=openai/gpt-oss-20b 3s
+2026-11-24 21:38:30,576 INFO adjudicator: [ 99] YouTube Transcript         Buildable with limitations       Self-serve (paid plan required) tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:39:31,854 INFO adjudicator: [100] Grain                      Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:39:31,872 INFO adjudicator: batch checkpoint: 92/100 adjudicated | usage {'calls': 184, 'prompt_tokens': 315701, 'completion_tokens': 60707}
+2026-11-24 21:39:31,872 INFO adjudicator: finished: 92/100 adjudicated | usage {'calls': 184, 'prompt_tokens': 315701, 'completion_tokens': 60707}
+2026-11-24 21:39:46,342 INFO adjudicator: 92 done, 8 to adjudicate
+2026-11-24 21:39:56,822 INFO adjudicator: [ 10] DealCloud                  Buildable with limitations       Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-120b 4s
+2026-11-24 21:39:57,584 WARNING groq_client: daily limit on openai/gpt-oss-120b; switching to openai/gpt-oss-20b
+2026-11-24 21:40:57,992 INFO adjudicator: [ 26] Discord                    Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 61s
+2026-11-24 21:40:59,862 INFO adjudicator: [ 58] Sherlock                   Insufficient evidence            Unclear                        tools=[] model=openai/gpt-oss-20b 2s
+2026-11-24 21:42:01,072 WARNING adjudicator: [Neo4j] json_validate_failed, retrying once: Error code: 400 - {'error': {'message': "Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.", 'type': 'invalid_request_error', 'code': 'json_validate_failed'
+2026-11-24 21:43:00,822 INFO adjudicator: [ 66] Neo4j                      Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-20b 121s
+2026-11-24 21:44:02,407 INFO adjudicator: [ 74] Jira                       Ready to build                   Self-serve (free)              tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:45:03,852 INFO adjudicator: [ 80] Harvest                    Ready to build                   Self-serve (free trial / sandbox) tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:46:05,597 INFO adjudicator: [ 82] Plaid                      Ready to build                   Self-serve (free trial / sandbox) tools=[] model=openai/gpt-oss-20b 62s
+2026-11-24 21:47:06,753 INFO adjudicator: [ 89] Ramp                       Insufficient evidence            Unclear                        tools=['read_fetched_page'] model=openai/gpt-oss-20b 61s
+2026-11-24 21:47:06,760 INFO adjudicator: batch checkpoint: 100/100 adjudicated | usage {'calls': 16, 'prompt_tokens': 26708, 'completion_tokens': 4829}
+2026-11-24 21:47:06,760 INFO adjudicator: finished: 100/100 adjudicated | usage {'calls': 16, 'prompt_tokens': 26708, 'completion_tokens': 4829}

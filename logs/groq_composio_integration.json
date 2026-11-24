@@ -1,0 +1,82 @@
+{
+ "timestamp": "2026-11-24T17:11:49Z",
+ "checks": [
+  {
+   "check": "composio session.tools() returned tools",
+   "ok": true,
+   "detail": [
+    "COMPOSIO_GET_TOOL_SCHEMAS",
+    "COMPOSIO_MANAGE_CONNECTIONS",
+    "COMPOSIO_MULTI_EXECUTE_TOOL",
+    "COMPOSIO_REMOTE_BASH_TOOL",
+    "COMPOSIO_REMOTE_WORKBENCH",
+    "COMPOSIO_SEARCH_TOOLS"
+   ]
+  },
+  {
+   "check": "conversion: Composio schema -> Groq tool schema",
+   "ok": true,
+   "detail": {
+    "before_chars": 1336,
+    "after_chars": 1125,
+    "params": [
+     "tool_slugs",
+     "include"
+    ]
+   }
+  },
+  {
+   "check": "allowlist excludes write/exec meta tools",
+   "ok": true,
+   "detail": [
+    "COMPOSIO_MANAGE_CONNECTIONS",
+    "COMPOSIO_MULTI_EXECUTE_TOOL",
+    "COMPOSIO_REMOTE_BASH_TOOL",
+    "COMPOSIO_REMOTE_WORKBENCH",
+    "COMPOSIO_SEARCH_TOOLS"
+   ]
+  },
+  {
+   "check": "groq requested a tool call",
+   "ok": true,
+   "detail": [
+    "COMPOSIO_GET_TOOL_SCHEMAS"
+   ]
+  },
+  {
+   "check": "python executed it via Composio and it succeeded",
+   "ok": true,
+   "detail": [
+    "{\"data\": {\"success\": true, \"tool_schemas\": {\"GITHUB_GET_A_REPOSITORY\": {\"toolkit\": \"GITHUB\", \"tool_slug\": \"GITHUB_GET_A_REPOSITORY\", \"description\": \"Retrieves d"
+   ]
+  },
+  {
+   "check": "groq answer grounded in tool result (mentions owner and repo)",
+   "ok": true,
+   "detail": "The required input fields for\u202fGITHUB_GET_A_REPOSITORY\u202fare\u202f`owner`\u202fand\u202f`repo`."
+  }
+ ],
+ "model": "openai/gpt-oss-120b",
+ "tool_trace": [
+  {
+   "tool": "COMPOSIO_GET_TOOL_SCHEMAS",
+   "arguments": {
+    "include": [
+     "input_schema"
+    ],
+    "tool_slugs": [
+     "GITHUB_GET_A_REPOSITORY"
+    ]
+   },
+   "ok": true,
+   "ms": 359,
+   "result_excerpt": "{\"data\": {\"success\": true, \"tool_schemas\": {\"GITHUB_GET_A_REPOSITORY\": {\"toolkit\": \"GITHUB\", \"tool_slug\": \"GITHUB_GET_A_REPOSITORY\", \"description\": \"Retrieves detailed information about an existing and accessible GitHub repository.\", \"input_schema\": {\"type\": \"object\", \"required\": [\"owner\", \"repo\"], \"properties\": {\"repo\": {\"type\": \"string\", \"examples\": [\"Hello-World\", \"kubernetes\"], \"minLength\": 1,"
+  }
+ ],
+ "final_answer": "The required input fields for\u202fGITHUB_GET_A_REPOSITORY\u202fare\u202f`owner`\u202fand\u202f`repo`.",
+ "usage": {
+  "calls": 2,
+  "prompt_tokens": 1301,
+  "completion_tokens": 93
+ }
+}

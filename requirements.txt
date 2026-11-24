@@ -1,0 +1,6 @@
+# Crawler, evidence validator and analyzer: Python standard library only (3.11+).
+# Composio stage (agent/composio_client.py, agent/composio_enrich.py)
+composio==0.34.0
+# LLM reasoning stage (agent/groq_client.py, agent/llm_adjudicator.py)
+groq==1.7.0
+python-dotenv==1.2.4

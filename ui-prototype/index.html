@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping the Agent-Ready Ecosystem — Composio Research Field Study Nº 001</title>
+<meta name="description" content="A field study of how 100 applications expose their capabilities to AI agents: authentication, credential access, API surface, MCP availability and buildability.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Silkscreen:wght@400;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="styles.css?v=20261124c">
+<script>document.documentElement.classList.add("js")</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- ============ NAV ============ -->
+<header class="topbar" id="top">
+  <div class="topbar-inner">
+    <a class="brand" href="#hero" aria-label="Composio Research — back to start">
+      <svg class="brand-mark" viewBox="0 0 1388 616" aria-hidden="true" shape-rendering="crispEdges">
+        <rect x="0" y="0" width="1183" height="62"/><rect x="0" y="0" width="62" height="616"/>
+        <rect x="0" y="554" width="685" height="62"/><rect x="748" y="554" width="435" height="62"/>
+        <rect x="1121" y="0" width="62" height="616"/>
+        <rect x="292" y="62" width="62" height="428"/><rect x="292" y="428" width="599" height="62"/>
+        <rect x="829" y="398" width="62" height="92"/><rect x="829" y="62" width="62" height="268"/>
+        <rect x="136" y="133" width="68" height="62"/><rect x="136" y="423" width="68" height="62"/>
+        <rect x="979" y="133" width="68" height="62"/><rect x="979" y="423" width="68" height="62"/>
+        <rect x="458" y="146" width="124" height="62"/><rect x="650" y="146" width="76" height="62"/>
+        <rect x="458" y="283" width="268" height="62"/>
+        <rect x="1183" y="228" width="205" height="62"/><rect x="1326" y="228" width="62" height="331"/>
+        <rect x="1183" y="497" width="205" height="62"/><rect x="1273" y="362" width="55" height="62"/>
+      </svg>
+      <span>COMPOSIO <i>/</i> RESEARCH</span>
+    </a>
+    <nav class="primary-nav" aria-label="Primary">
+      <a href="#overview" data-nav="overview"><span class="nav-txt">Overview</span></a>
+      <a href="#methodology" data-nav="methodology"><span class="nav-txt">Methodology</span></a>
+      <a href="#ecosystem" data-nav="ecosystem"><span class="nav-txt">Dataset</span></a>
+      <a href="#verification" data-nav="verification"><span class="nav-txt">Verification</span></a>
+    </nav>
+    <span class="topbar-meta">FIELD STUDY / 2026</span>
+    <button class="index-btn" id="index-btn" aria-expanded="false" aria-controls="index-panel">
+      <span class="index-btn-icon" aria-hidden="true"><i></i><i></i><i></i></span>
+      <span>Index</span>
+    </button>
+  </div>
+  <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+</header>
+
+<!-- Full section index (desktop + mobile) -->
+<div class="index-panel" id="index-panel" hidden>
+  <nav aria-label="Section index">
+    <p class="label">Contents — 8 sections</p>
+    <ol>
+      <li><a href="#overview" data-nav="overview"><span>01</span>Overview</a></li>
+      <li><a href="#ecosystem" data-nav="ecosystem"><span>02</span>Ecosystem / Dataset</a></li>
+      <li><a href="#methodology" data-nav="methodology"><span>03</span>Methodology</a></li>
+      <li><a href="#architecture" data-nav="architecture"><span>04</span>Agent Architecture</a></li>
+      <li><a href="#findings" data-nav="findings"><span>05</span>Research Findings</a></li>
+      <li><a href="#verification" data-nav="verification"><span>06</span>Verification</a></li>
+      <li><a href="#recommendations" data-nav="recommendations"><span>07</span>Recommendations</a></li>
+      <li><a href="#source" data-nav="source"><span>08</span>Source Repository</a></li>
+    </ol>
+  </nav>
+</div>
+
+<main id="main">
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="hero" aria-labelledby="hero-title">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <div class="hero-meta">
+        <span class="mono">AI PRODUCT OPERATIONS / FIELD STUDY Nº 001</span>
+        <span class="dot-accent" aria-hidden="true"></span>
+      </div>
+      <div class="hero-body">
+        <h1 id="hero-title" class="pixel-title">
+          <span class="line">Mapping the</span>
+          <span class="line">Agent-ready</span>
+          <span class="line">Ecosystem.</span>
+        </h1>
+        <p class="hero-lede">An investigation into how 100 applications<br class="br-wide"> expose their capabilities to AI agents.</p>
+        <div class="hero-tabs">
+          <div class="hero-tags" role="tablist" aria-label="Research dimensions">
+            <button type="button" role="tab" id="ht-auth" data-dim="auth" aria-selected="true" aria-controls="ht-panel">Auth</button><button type="button" role="tab" id="ht-api" data-dim="api" aria-selected="false" aria-controls="ht-panel" tabindex="-1">API</button><button type="button" role="tab" id="ht-mcp" data-dim="mcp" aria-selected="false" aria-controls="ht-panel" tabindex="-1">MCP</button><button type="button" role="tab" id="ht-build" data-dim="build" aria-selected="false" aria-controls="ht-panel" tabindex="-1">Buildability</button>
+          </div>
+          <div class="hero-readout" id="ht-panel" role="tabpanel" aria-labelledby="ht-auth" aria-live="polite"><p class="placeholder">Loading research data…</p></div>
+        </div>
+        <div class="hero-cta">
+          <a class="cta" href="#overview">Explore the research <span aria-hidden="true">↓</span></a>
+          <a class="cta-link" href="#methodology">How it works <span aria-hidden="true">→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <figure class="hero-figure" aria-labelledby="fig-caption">
+      <span class="corner tl mono">FIG. 01</span>
+      <span class="corner tr mono" id="fig-count">— NODES</span>
+      <span class="corner bl mono">ECOSYSTEM SPHERE / PROCEDURAL</span>
+      <span class="corner br mono"><span class="dot-accent" aria-hidden="true"></span> LENS</span>
+      <canvas id="hero-canvas" role="img" aria-label="Procedural illustration: a dotted sphere surrounded by orbital rings and application nodes, rendered through horizontal scanlines. Filled nodes are adjudicated apps, hollow nodes are pending, blue nodes are flagged for human review."></canvas>
+      <figcaption id="fig-caption" class="fig-legend mono">
+        <span><i class="lg lg-fill"></i>Adjudicated</span>
+        <span><i class="lg lg-hollow"></i>Pending</span>
+        <span><i class="lg lg-accent"></i>Flagged for review</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <div class="hero-strip" id="hero-strip" aria-label="Study status">
+    <div class="strip-cell"><span class="label">Apps researched</span><b data-k="done">—</b><span class="chip" data-k="done-chip">Loading</span></div>
+    <div class="strip-cell"><span class="label">Valid records</span><b data-k="valid">—</b><span class="chip chip-ghost" data-k="valid-chip">—</span></div>
+    <div class="strip-cell"><span class="label">Ground-truth sample</span><b data-k="sample">—</b><span class="chip chip-ghost" data-k="sample-chip">—</span></div>
+    <div class="strip-cell"><span class="label">Groq exact accuracy</span><b data-k="acc">—</b><span class="chip chip-accent" data-k="acc-chip">—</span></div>
+  </div>
+</section>
+
+<div class="data-banner" id="data-banner" role="status" hidden></div>
+
+<!-- ============ 01 OVERVIEW ============ -->
+<section class="sec" id="overview" aria-labelledby="t-overview">
+  <header class="sec-head">
+    <span class="sec-num mono">01</span>
+    <span class="sec-label mono">Overview</span>
+    <h2 id="t-overview">The research at a glance</h2>
+    <p class="sec-intro">The research run is complete. Every figure below is computed in the browser from the final pipeline output: every app researched, every record schema-checked, and accuracy measured on a separately built ground-truth sample.</p>
+  </header>
+  <div class="metric-grid" id="metrics"></div>
+  <div class="dims">
+    <h3 class="mono label">What is investigated for every application</h3>
+    <ol class="dim-list">
+      <li><b>Authentication</b><span>Which auth schemes the official docs describe — OAuth2, API key, token, basic.</span></li>
+      <li><b>Credential access</b><span>Whether a developer can self-serve credentials or needs approval, a paid plan or a partnership.</span></li>
+      <li><b>API surface</b><span>Whether a documented public API exists, and its type (REST, GraphQL…).</span></li>
+      <li><b>MCP availability</b><span>Official, community or no MCP server found in the official MCP Registry.</span></li>
+      <li><b>Buildability</b><span>A verdict on whether an agent toolkit can realistically be built, and the main blocker.</span></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============ 02 ECOSYSTEM ============ -->
+<section class="sec" id="ecosystem" aria-labelledby="t-eco">
+  <header class="sec-head">
+    <span class="sec-num mono">02</span>
+    <span class="sec-label mono">Ecosystem / Dataset</span>
+    <h2 id="t-eco">The application landscape</h2>
+    <p class="sec-intro">Search, filter and sort the directory. Open <b>Evidence</b> on any row to see the cited sources and whether the agent actually fetched each page. Fields the evidence did not settle show as <i>Unknown</i> — never as a positive result.</p>
+  </header>
+
+  <div class="dir-controls" role="search">
+    <label class="field field-search">
+      <span class="label">Search</span>
+      <input type="search" id="q" placeholder="App, category, auth, blocker…" autocomplete="off">
+    </label>
+    <label class="field"><span class="label">Category</span><select id="f-cat"><option value="">All</option></select></label>
+    <label class="field"><span class="label">Auth</span><select id="f-auth"><option value="">All</option></select></label>
+    <label class="field"><span class="label">MCP</span><select id="f-mcp"><option value="">All</option></select></label>
+    <label class="field"><span class="label">Buildability</span><select id="f-build"><option value="">All</option></select></label>
+    <label class="field"><span class="label">Sort</span>
+      <select id="f-sort">
+        <option value="id:asc">Study order</option>
+        <option value="name:asc">Name A–Z</option>
+        <option value="name:desc">Name Z–A</option>
+        <option value="category:asc">Category</option>
+        <option value="buildability:asc">Buildability</option>
+        <option value="evidence:desc">Most evidence</option>
+      </select>
+    </label>
+  </div>
+  <div class="dir-meta">
+    <p id="dir-count" class="mono" aria-live="polite">—</p>
+    <button class="btn-text" id="dir-reset" type="button">Reset filters</button>
+  </div>
+
+  <div class="table-wrap">
+    <table class="dir" id="dir">
+      <caption class="sr-only">Application directory</caption>
+      <thead>
+        <tr>
+          <th scope="col"><button class="th-sort" data-sort="name">Application</button></th>
+          <th scope="col"><button class="th-sort" data-sort="category">Category</button></th>
+          <th scope="col"><button class="th-sort" data-sort="auth">Authentication</button></th>
+          <th scope="col"><button class="th-sort" data-sort="access">Credential access</button></th>
+          <th scope="col"><button class="th-sort" data-sort="mcp">MCP</button></th>
+          <th scope="col"><button class="th-sort" data-sort="buildability">Buildability</button></th>
+          <th scope="col"><button class="th-sort" data-sort="evidence">Evidence</button></th>
+        </tr>
+      </thead>
+      <tbody id="dir-body">
+        <tr><td colspan="7" class="empty">Loading research data…</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="dir-more-wrap" id="dir-more-wrap" hidden>
+    <button class="dir-more" id="dir-more" type="button" aria-expanded="false" aria-controls="dir-body"><span id="dir-more-label">Show all apps</span><span class="dm-x" aria-hidden="true"></span></button>
+  </div>
+</section>
+
+<!-- ============ 03 METHODOLOGY ============ -->
+<section class="sec" id="methodology" aria-labelledby="t-method">
+  <header class="sec-head">
+    <span class="sec-num mono">03</span>
+    <span class="sec-label mono">Methodology</span>
+    <h2 id="t-method">How the research was conducted</h2>
+    <p class="sec-intro">Seven completed stages, from the app dataset to this report. Each status line is read from the final pipeline output, not asserted.</p>
+  </header>
+  <ol class="pipeline" id="pipeline"></ol>
+</section>
+
+<!-- ============ 04 ARCHITECTURE ============ -->
+<section class="sec" id="architecture" aria-labelledby="t-arch">
+  <header class="sec-head">
+    <span class="sec-num mono">04</span>
+    <span class="sec-label mono">Agent Architecture</span>
+    <h2 id="t-arch">Inside the research pipeline</h2>
+    <p class="sec-intro">Only one stage reasons: the Groq adjudicator. The crawler is deterministic; Composio was integrated and demonstrated separately; the validator checks every citation and schema.</p>
+  </header>
+  <div class="arch" id="arch"></div>
+  <p class="legend-line mono">
+    <span data-st="done"><i class="st st-done"></i>Implemented &amp; ran</span>
+    <span data-st="run"><i class="st st-run"></i>In progress</span>
+    <span data-st="pend"><i class="st st-pend"></i>Pending / partial</span>
+  </p>
+</section>
+
+<!-- ============ 05 FINDINGS ============ -->
+<section class="sec" id="findings" aria-labelledby="t-find">
+  <header class="sec-head">
+    <span class="sec-num mono">05</span>
+    <span class="sec-label mono">Research Findings</span>
+    <h2 id="t-find">What the ecosystem reveals</h2>
+    <p class="sec-intro" id="find-intro">Distributions are computed only from adjudicated apps.</p>
+  </header>
+  <div class="find-grid">
+    <article class="panel" aria-labelledby="h-auth"><h3 id="h-auth">Authentication methods <span class="muted">apps · multi-select</span></h3><div class="bars" id="c-auth"></div></article>
+    <article class="panel" aria-labelledby="h-access"><h3 id="h-access">Self-serve vs gated credentials</h3><div id="c-access"></div></article>
+    <article class="panel" aria-labelledby="h-mcp"><h3 id="h-mcp">MCP availability</h3><div class="bars" id="c-mcp"></div></article>
+    <article class="panel" aria-labelledby="h-build"><h3 id="h-build">Buildability verdicts</h3><div class="bars" id="c-build"></div></article>
+    <article class="panel panel-wide" aria-labelledby="h-cat"><h3 id="h-cat">Category comparison <span class="muted">verdict mix per category</span></h3><div id="c-cat"></div></article>
+    <article class="panel panel-wide" aria-labelledby="h-sky">
+      <h3 id="h-sky">App skyline <span class="muted">10 categories × 10 apps · one box per app</span></h3>
+      <div id="skyline"></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ 06 VERIFICATION ============ -->
+<section class="sec" id="verification" aria-labelledby="t-ver">
+  <header class="sec-head">
+    <span class="sec-num mono">06</span>
+    <span class="sec-label mono">Verification</span>
+    <h2 id="t-ver">Measuring reliability</h2>
+    <p class="sec-intro">Each stage is scored against the same ground-truth sample. Claims the evidence did not settle are excluded rather than guessed.</p>
+  </header>
+  <div id="ver"></div>
+</section>
+
+<!-- ============ 07 RECOMMENDATIONS ============ -->
+<section class="sec" id="recommendations" aria-labelledby="t-rec">
+  <header class="sec-head">
+    <span class="sec-num mono">07</span>
+    <span class="sec-label mono">Recommendations &amp; Limitations</span>
+    <h2 id="t-rec">What remains difficult</h2>
+    <p class="sec-intro">Priorities computed from adjudicated rows, followed by the honest limits of this method.</p>
+  </header>
+  <div class="rec-grid" id="recs" aria-live="off"></div>
+  <div class="rec-detail" id="rec-detail" role="region" aria-labelledby="rec-detail-title" hidden></div>
+  <h3 class="mono label sub-label">Limitations</h3>
+  <div class="limits" id="limits">
+    <details class="lim" data-lim="human">
+      <summary><span class="lim-n mono">01</span><b>Only part of the dataset has ground truth</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Ground truth covers a seeded sample only. The remaining apps carry Groq-generated findings with no independent check, so treat their values with the measured error rate in mind. The ground truth itself was prepared with LLM assistance and has not yet been re-checked by a person.</p><p class="lim-data mono" data-lim-data="human"></p></div>
+    </details>
+    <details class="lim" data-lim="mcp">
+      <summary><span class="lim-n mono">02</span><b>Groq underperformed the crawler on MCP</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>The deep crawler queries the official MCP Registry directly; Groq sometimes classified vendor-owned MCP servers as third-party/community or unclear. The registry itself is young, so "None found" is not "none exists". Treat MCP counts as indicative.</p><p class="lim-data mono" data-lim-data="mcp"></p></div>
+    </details>
+    <details class="lim" data-lim="composio">
+      <summary><span class="lim-n mono">03</span><b>Composio was tested separately</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>The Groq → Composio tool path was demonstrated in a dedicated round-trip test. It was not used to investigate the 100 apps: in the research run Groq only re-read pages the crawler had already fetched. Composio's catalog served as secondary evidence.</p><p class="lim-data mono" data-lim-data="composio"></p></div>
+    </details>
+    <details class="lim" data-lim="models">
+      <summary><span class="lim-n mono">04</span><b>Model comparison is not statistically fair</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>The fallback model only took over when the primary model hit its free daily token cap, so the two models adjudicated different apps with different category mixes, and only a handful of sample apps each. The gap does not show which model is more accurate.</p><p class="lim-data mono" data-lim-data="models"></p></div>
+    </details>
+    <details class="lim" data-lim="noevidence">
+      <summary><span class="lim-n mono">05</span><b>Apps without evidence links</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Where no official API documentation was found, the record says so explicitly (insufficient evidence, unclear access) instead of citing something weak. Those apps carry no Groq citation; any link shown comes from the reviewer's check.</p><p class="lim-data mono" data-lim-data="noevidence"></p></div>
+    </details>
+    <details class="lim" data-lim="docs">
+      <summary><span class="lim-n mono">06</span><b>Documentation quality &amp; discoverability</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Auth and access details are scattered across API references, help centres and pricing pages; some vendors render docs only with JavaScript.</p><p class="lim-data mono" data-lim-data="docs"></p></div>
+    </details>
+    <details class="lim" data-lim="auth">
+      <summary><span class="lim-n mono">07</span><b>Authentication ambiguity</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>"API key", "personal access token" and "bearer token" are often the same thing under different names, so auth is scored as coarse classes.</p><p class="lim-data mono" data-lim-data="auth"></p></div>
+    </details>
+    <details class="lim" data-lim="gated">
+      <summary><span class="lim-n mono">08</span><b>Gated developer access</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Credential access lives in partner and pricing pages, not API references — it is the hardest field to settle.</p><p class="lim-data mono" data-lim-data="gated"></p></div>
+    </details>
+    <details class="lim" data-lim="evidence">
+      <summary><span class="lim-n mono">09</span><b>Incomplete or conflicting evidence</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Where official pages disagree or are silent, the field stays <i>Unclear</i> or the app is marked <i>Insufficient evidence</i> — never upgraded to a positive claim.</p><p class="lim-data mono" data-lim-data="evidence"></p></div>
+    </details>
+    <details class="lim" data-lim="llm">
+      <summary><span class="lim-n mono">10</span><b>LLM hallucination risk</b><span class="lim-x" aria-hidden="true"></span></summary>
+      <div class="lim-body"><p>Every Groq citation is checked against the pages actually fetched; uncited or unfetched claims are dropped or flagged, not trusted. Rejected generations failed the schema check and were retried, never saved.</p><p class="lim-data mono" data-lim-data="llm"></p></div>
+    </details>
+  </div>
+</section>
+
+<!-- ============ 08 SOURCE ============ -->
+<section class="sec" id="source" aria-labelledby="t-src">
+  <header class="sec-head">
+    <span class="sec-num mono">08</span>
+    <span class="sec-label mono">Source Repository</span>
+    <h2 id="t-src">Built to be inspected</h2>
+    <p class="sec-intro">Every number on this page traces back to a file in the repository.</p>
+  </header>
+  <div class="src-grid">
+    <div class="panel">
+      <h3>Repository</h3>
+      <dl class="kv">
+        <dt>GitHub</dt><dd><span class="placeholder">Not yet published — link will be added once the repository is pushed.</span></dd>
+        <dt>README</dt><dd><a href="../README.md">README.md</a> <span class="muted">(project root)</span></dd>
+        <dt>Methodology</dt><dd><a href="#methodology">Section 03</a> · <a href="#verification">Section 06</a></dd>
+        <dt>Data</dt><dd><code>dashboard/data.js</code> ← <code>data/verified_results.json</code></dd>
+      </dl>
+    </div>
+    <div class="panel">
+      <h3>Reproduce</h3>
+      <pre class="code" tabindex="0"><code>python -m venv .venv
+.venv\Scripts\python -m pip install -r requirements.txt
+.venv\Scripts\python data\build_apps.py
+.venv\Scripts\python -m agent.orchestrator --pass 1
+.venv\Scripts\python -m agent.orchestrator --pass 2
+.venv\Scripts\python -m agent.composio_client
+.venv\Scripts\python -m agent.orchestrator --composio
+.venv\Scripts\python -m agent.groq_client
+.venv\Scripts\python -m tests.test_groq_composio
+.venv\Scripts\python -m agent.llm_adjudicator
+.venv\Scripts\python -m agent.failed_attempts_backfill
+.venv\Scripts\python -m agent.llm_adjudicator      # retry pass: only apps without a valid record
+.venv\Scripts\python -m agent.schema_check
+.venv\Scripts\python verification\build_ground_truth.py
+.venv\Scripts\python -m agent.evidence_validator
+.venv\Scripts\python -m agent.pattern_analyzer
+.venv\Scripts\python -m http.server 8766</code></pre>
+      <p class="muted small">Then open <code>/ui-prototype/</code>. The adjudicator saves after every app and skips apps that already have a valid record, so the second run only retries failures. API-key setup and the full command reference are in the README.</p>
+    </div>
+    <div class="panel">
+      <h3>Technology</h3>
+      <ul class="stack">
+        <li><b>Python 3.11</b><span>stdlib crawler</span></li>
+        <li><b>Composio SDK</b><span id="sdk-composio">—</span></li>
+        <li><b>Groq SDK</b><span id="sdk-groq">—</span></li>
+        <li><b>MCP Registry API</b><span>MCP availability</span></li>
+        <li><b>Vanilla HTML/CSS/JS</b><span>this report, no build step</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <span class="mono">COMPOSIO / RESEARCH — FIELD STUDY Nº 001</span>
+  <span class="mono" id="foot-source">—</span>
+  <a class="mono" href="#hero">Back to top ↑</a>
+</footer>
+
+<button class="to-top" id="to-top" type="button" aria-label="Back to top" hidden>↑</button>
+
+<!-- Real pipeline output (read-only). If missing, app.js falls back to data/sample-data.json -->
+<script src="../dashboard/data.js" onerror="window.__DATA_JS_MISSING=true"></script>
+<script src="hero.js?v=20261124c"></script>
+<script src="skyline.js?v=20261124c"></script>
+<script src="app.js?v=20261124c"></script>
+<script src="glyph-bg.js?v=20261124c"></script>
+</body>
+</html>

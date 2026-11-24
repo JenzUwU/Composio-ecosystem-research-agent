@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping the Agent-Ready App Ecosystem — 100-app research case study</title>
+<meta name="description" content="An evidence-backed analysis of 100 applications: auth, credential access, API surface, MCP coverage and buildability for agent toolkits.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="nav"><div class="nav-inner">
+  <span class="brand">Agent-Ready App Map</span>
+  <a href="#summary">01 Summary</a><a href="#findings">02 Findings</a><a href="#dataset">03 Dataset</a>
+  <a href="#categories">04 Categories</a><a href="#matrix">05 Matrix</a><a href="#agent">06 Agent</a>
+  <a href="#composio">06b Composio</a><a href="#verification">07 Verification</a><a href="#recs">08 Recommendations</a><a href="#repro">09 Reproduce</a>
+</div></nav>
+
+<main class="wrap">
+
+<!-- 01 -->
+<section id="summary" class="hero">
+  <div class="eyebrow">01 · Executive summary</div>
+  <h1>Mapping the Agent-Ready App Ecosystem</h1>
+  <p class="lede">An evidence-backed analysis of 100 applications to identify API readiness, authentication friction, credential accessibility, and integration opportunities.</p>
+  <div class="headline" id="headline"></div>
+  <div class="grid g4" id="stats"></div>
+  <div class="card" style="margin-top:14px">
+    <h3>Buildability of all 100 apps</h3>
+    <div class="legend" id="verdict-legend"></div>
+    <div class="chart" id="verdict-bar"></div>
+    <p class="small" style="margin:8px 0 0">Every number on this page is computed in the browser from <code>data.js</code>, which is generated from <code>data/verified_results.json</code> by <code>agent/pattern_analyzer.py</code>. Nothing is typed in by hand. Field values are Groq's output; on the 30 ground-truth sample apps, wrong values were replaced by the reviewed ones (logged in section 07).</p>
+  </div>
+</section>
+
+<!-- 02 -->
+<section id="findings">
+  <div class="eyebrow">02 · Key findings</div>
+  <h2>The patterns</h2>
+  <p class="sub">What the 100 apps say together, ranked by how much they should change Composio's toolkit roadmap.</p>
+  <div class="grid g3" id="insights"></div>
+  <div class="grid g3" style="margin-top:14px">
+    <div class="card"><h3>Auth methods supported <span class="muted small">(apps, multi-select)</span></h3><div class="chart" id="auth-chart"></div></div>
+    <div class="card"><h3>How a developer gets credentials</h3><div class="chart" id="access-chart"></div></div>
+    <div class="card"><h3>Primary blocker <span class="muted small">(apps not ready-to-build)</span></h3><div class="chart" id="blocker-chart"></div></div>
+  </div>
+</section>
+
+<!-- 03 -->
+<section id="dataset">
+  <div class="eyebrow">03 · Research dataset</div>
+  <h2>All 100 apps, with evidence</h2>
+  <p class="sub">Search or filter, and click <b>Evidence</b> on any row to see the source URLs behind each claim and whether the agent actually fetched each page. <span class="flag">review</span> marks rows that still need a human check.</p>
+  <div class="controls">
+    <input id="q" type="search" placeholder="Search app, blocker, auth…" aria-label="Search">
+    <select id="f-cat" aria-label="Category"><option value="">All categories</option></select>
+    <select id="f-auth" aria-label="Auth"><option value="">Any auth</option></select>
+    <select id="f-access" aria-label="Access"><option value="">Any access model</option></select>
+    <select id="f-verdict" aria-label="Verdict"><option value="">Any verdict</option></select>
+    <select id="f-mcp" aria-label="MCP"><option value="">Any MCP status</option></select>
+    <span class="count" id="count"></span>
+  </div>
+  <div class="tablewrap"><table id="tbl">
+    <thead><tr>
+      <th data-k="app_name">Application</th><th data-k="auth">Authentication</th><th data-k="credential_access">Access model</th>
+      <th data-k="api">API type</th><th data-k="mcp_available">MCP</th><th data-k="buildability_verdict">Buildability</th>
+      <th data-k="primary_blocker">Primary blocker</th><th>Evidence</th>
+    </tr></thead>
+    <tbody></tbody>
+  </table></div>
+</section>
+
+<!-- 04 -->
+<section id="categories">
+  <div class="eyebrow">04 · Category analysis</div>
+  <h2>Integration readiness by category</h2>
+  <p class="sub" id="cat-sub"></p>
+  <div class="grid g2">
+    <div class="card"><h3>Buildability mix per category</h3><div class="legend" id="cat-legend"></div><div class="chart" id="cat-chart"></div></div>
+    <div class="card"><h3>Category scorecard <span class="muted small">(apps out of 10)</span></h3><div style="overflow:auto"><table class="heat" id="heat"></table></div></div>
+  </div>
+</section>
+
+<!-- 05 -->
+<section id="matrix">
+  <div class="eyebrow">05 · Buildability matrix</div>
+  <h2>Where every app lands</h2>
+  <p class="sub">One chip per app. Columns are the verdict, rows are the category. Chips with a ring were in the hand-verified sample.</p>
+  <div class="card"><div class="matrix" id="bmatrix"></div></div>
+</section>
+
+<!-- 06 -->
+<section id="agent">
+  <div class="eyebrow">06 · Research agent architecture</div>
+  <h2>How the research was automated, and where a human stepped in</h2>
+  <p class="sub">A rule-based Python crawler collects evidence, the Composio SDK adds catalog data and tools, and Groq does the reasoning. Each stage writes a checkpoint, and every claim keeps a link to the page it came from. The crawler is deterministic, not an autonomous agent; only stage 4 reasons.</p>
+  <div class="flow">
+    <div class="step"><div class="n">STAGE 1</div><h4>Orchestrator</h4><p>Loads <code>apps.json</code> (100 apps plus candidate official doc URLs), runs batches of 20 with 8 parallel workers, and saves results and progress after every batch.</p></div>
+    <div class="step"><div class="n">STAGE 2</div><h4>Fetch &amp; discover</h4><p>Cached HTTP fetch with retries and a 1 s per-host delay. JS-only or blocked pages go through a rendering fallback. Follows up to 6 auth / getting-started links per app and probes <code>/llms.txt</code>.</p></div>
+    <div class="step"><div class="n">STAGE 3</div><h4>Signal extraction</h4><p>Deterministic regex extractors for auth, API type, access gates and MCP mentions. Each hit stores its source URL and a snippet. Also queries the official MCP Registry API.</p></div>
+    <div class="step"><div class="n">STAGE 4 · GROQ LLM</div><h4>Adjudication with tools</h4><p id="stage4-text"></p></div>
+    <div class="step"><div class="n">STAGE 4b · COMPOSIO SDK</div><h4>Catalog cross-check</h4><p>The official <code>composio</code> SDK (v0.34) pulls Composio's toolkit catalog once. For each app it records toolkit existence, tool count and auth schemes, then compares them with the crawler's findings. This is secondary evidence; official docs stay primary.</p></div>
+    <div class="step human"><div class="n">STAGE 5 · VERIFY</div><h4>Validate &amp; score</h4><p>Checks every cited URL against the fetch cache, logs each agent→final correction, and scores every stage against a ground-truth sample of 30 apps built separately from the official pages (LLM-assisted, blind to Groq).</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Pipeline run (actual numbers)</h3><ul class="clean" id="runstats"></ul></div>
+    <div class="card"><h3>Where a human / LLM was needed</h3><ul class="clean">
+      <li><b>Seed discovery.</b> Paygent Connect, fanbasis, iPayX, Waterfall.io, higgsfield, Fathom, Grain, systeme.io and PitchBook had no reliable doc URL in the brief, so they were located by manual web search. For 4 of them no official API docs were found at all, and the dataset records that.</li>
+      <li><b>Semantics regex can't capture.</b> A "Contact sales" button on a marketing page is not a partner gate, and an "API key" mentioned in an SDK snippet is not necessarily the app's auth model. That's why the Groq stage exists.</li>
+      <li><b>Ground truth.</b> 30 sampled apps were re-checked against the official pages and vendor MCP repos, blind to Groq's answers, with notes and URLs in <code>verification/ground_truth.json</code>. Fields the evidence didn't settle were left unscored. The ground truth was prepared with LLM assistance and has <b>not yet been re-checked by a person</b>.</li>
+      <li><b>Credentials.</b> The candidate created the Composio and Groq keys and entered them locally. The agent never saw them. No external app account was connected.</li>
+      <li><b>Composio account permissions.</b> The first key was read-only for sessions (HTTP 403), so the user created a key with session write access. No app account (e.g. GitHub) was connected, so only a Composio meta tool was executed.</li>
+      <li><b>Wrong-product matches.</b> 3 catalog matches were rejected on review (Salesforce Commerce Cloud → Sales Cloud toolkit, Mermaid CLI → Mermaid Chart, YouTube Transcript → a different transcript vendor).</li>
+    </ul></div>
+  </div>
+</section>
+
+<!-- 06b -->
+<section id="composio">
+  <div class="eyebrow">06b · Groq + Composio integration</div>
+  <h2>Groq + Composio: what Composio already covers, and what we actually ran</h2>
+  <p class="sub" id="cmp-sub"></p>
+  <div class="grid g2">
+    <div class="card"><h3>SDK calls executed (real HTTP results)</h3><table class="miss" id="cmp-calls"></table><p class="small" id="cmp-exec"></p></div>
+    <div class="card"><h3>Composio auth schemes vs. our crawler</h3><div class="chart" id="cmp-agree"></div><p class="small">"Agree" means every auth scheme Composio implements was also found in the vendor's docs. Composio implements a subset of each vendor's methods, so "partial" is normal.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Groq ↔ Composio tool-calling test (real calls)</h3><table class="miss" id="groq-calls"></table></div>
+    <div class="card"><h3>How the two SDKs connect</h3><p class="small" id="groq-trace"></p>
+      <ol class="small" style="padding-left:18px;margin:8px 0 0">
+        <li>Python fetches Composio's session tool schemas (OpenAI function format).</li>
+        <li>Conversion: keep a read-only allowlist, trim descriptions, drop <code>session_id</code>. Unit-tested.</li>
+        <li>Groq (<code>tools=…</code>) decides whether to call a tool. Python executes it (<code>session.execute</code> or the Composio SDK) and returns a <code>role: "tool"</code> message.</li>
+        <li>A second Groq call with strict JSON Schema produces the final record. Groq doesn't allow tools and structured output in the same request.</li>
+      </ol></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>Limitations</h3><ul class="clean" id="cmp-limits"></ul></div>
+</section>
+
+<!-- 07 -->
+<section id="verification">
+  <div class="eyebrow">07 · Verification &amp; accuracy</div>
+  <h2>How we know the findings are trustworthy</h2>
+  <p class="sub" id="ver-sub"></p>
+  <div class="grid g2">
+    <div class="card"><h3>Accuracy on the verification sample, by stage</h3><div class="chart" id="acc-chart"></div><p class="small" id="acc-note"></p></div>
+    <div class="card"><h3>Verification report</h3><table class="miss" id="ver-table"></table></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Per-field accuracy (sample)</h3><div style="overflow:auto"><table class="heat" id="field-table"></table></div></div>
+    <div class="card"><h3>Misses that remain after adjudication</h3><div id="final-misses" class="small"></div></div>
+  </div>
+  <div class="grid g2" style="margin-top:14px">
+    <div class="card"><h3>Groq accuracy by model (uncorrected output)</h3><div style="overflow:auto"><table class="miss" id="model-table"></table></div><p class="small muted" id="model-caveat"></p></div>
+    <div class="card"><h3>Review corrections (not counted in accuracy)</h3><p class="small" id="corr-sub"></p><div style="overflow:auto;max-height:320px"><table class="miss" id="corr-table"></table></div></div>
+  </div>
+  <div class="card" style="margin-top:14px"><h3>What the verification loop caught: pass-2 agent misses on the sample</h3><div style="overflow:auto;max-height:360px"><table class="miss" id="p2-misses"></table></div></div>
+</section>
+
+<!-- 08 -->
+<section id="recs">
+  <div class="eyebrow">08 · Recommendations for Composio</div>
+  <h2>What to do with this</h2>
+  <div class="grid g2" id="recs-grid"></div>
+</section>
+
+<!-- 09 -->
+<section id="repro">
+  <div class="eyebrow">09 · Technical reproducibility</div>
+  <h2>Run it yourself</h2>
+  <div class="grid g2">
+    <div class="card"><h3>Commands</h3>
+<pre>git clone &lt;this-repo&gt; &amp;&amp; cd composio-app-research
+python -m venv .venv &amp;&amp; .venv\Scripts\pip install -r requirements.txt
+copy .env.example .env   # add COMPOSIO_API_KEY and GROQ_API_KEY
+python data/build_apps.py                    # 100-app input
+python -m agent.orchestrator --pass 1        # naive crawler baseline
+python -m agent.orchestrator --pass 2        # deep crawler loop
+python -m agent.composio_client              # Composio connectivity test
+python -m agent.orchestrator --composio      # Composio catalog cross-check
+python -m agent.groq_client                  # Groq connectivity test
+python -m tests.test_groq_composio           # Groq to Composio tool-call round trip
+python -m agent.llm_adjudicator              # Groq adjudication, resumable
+python verification/build_ground_truth.py    # 30-app ground truth
+python -m agent.evidence_validator           # validate + score every stage
+python -m agent.pattern_analyzer             # stats -&gt; dashboard/data.js
+python -m http.server -d dashboard 8000      # open http://localhost:8000</pre>
+      <p class="small">Python 3.11+. The crawler uses only the standard library and needs no keys. The Composio and Groq stages need the official SDKs (<code>composio==0.34.0</code>, <code>groq==1.7.0</code>) and their API keys in <code>.env</code>, which is gitignored. Source repo: see the README (no public URL has been published yet).</p>
+    </div>
+    <div class="card"><h3>Dataset format (one record per app)</h3>
+<pre>{
+  "app_name", "category", "description",
+  "auth_methods": ["OAuth2","API Key",...],
+  "credential_access": "Self-serve (free) | ... | Unclear",
+  "api_type": ["REST","GraphQL"], "api_breadth",
+  "mcp_available": "Official | Third-party/community | None found",
+  "buildability_verdict", "primary_blocker", "blocker_category",
+  "evidence": [{field, claim, source_url, source_type,
+               verification_status}],
+  "confidence", "requires_human_review", "agent_pass2": {...}
+}</pre>
+    </div>
+  </div>
+</section>
+
+<footer>Built as a take-home for Composio's AI Product Ops Intern role. Research run on 24 Nov 2026; vendor docs change, and so will these answers. Rows flagged for review are not yet confirmed.</footer>
+</main>
+<div class="tip" id="tip"></div>
+<script src="data.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

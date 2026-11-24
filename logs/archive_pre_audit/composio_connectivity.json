@@ -1,0 +1,140 @@
+{
+ "timestamp": "2026-11-24T14:09:54Z",
+ "steps": [
+  {
+   "step": "init_client",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "step": "toolkits.get('github')",
+   "ok": true,
+   "detail": {
+    "slug": "github",
+    "name": "GitHub"
+   }
+  },
+  {
+   "step": "sessions.create",
+   "ok": true,
+   "detail": {
+    "session_id": "trs_lNoetfhIP0oe"
+   }
+  },
+  {
+   "step": "tools.get_raw_composio_tools(github)",
+   "ok": true,
+   "detail": [
+    "GITHUB_ABORT_REPOSITORY_MIGRATION",
+    "GITHUB_ACCEPT_REPOSITORY_INVITATION",
+    "GITHUB_ADD_APP_ACCESS_RESTRICTIONS",
+    "GITHUB_ADD_A_REPOSITORY_COLLABORATOR",
+    "GITHUB_ADD_ASSIGNEES_TO_AN_ISSUE"
+   ]
+  },
+  {
+   "step": "session.tools()",
+   "ok": true,
+   "detail": [
+    null,
+    null,
+    null,
+    null,
+    null,
+    null
+   ]
+  }
+ ],
+ "telemetry_enabled": false,
+ "http": [
+  "GET https://backend.composio.dev/api/v3.1/toolkits/github \"HTTP/1.1 200 OK\"",
+  "POST https://backend.composio.dev/api/v3.1/tool_router/session \"HTTP/1.1 201 Created\"",
+  "GET https://backend.composio.dev/api/v3.1/tools?toolkit_slug=github&toolkit_versions=latest&limit=5 \"HTTP/1.1 200 OK\"",
+  "GET https://backend.composio.dev/api/v3.1/tool_router/session/trs_lNoetfhIP0oe/tools?limit=500 \"HTTP/1.1 200 OK\""
+ ],
+ "sdk_version": "0.34.0",
+ "tool_execution": {
+  "timestamp": "2026-11-24T14:10:26Z",
+  "tool": "COMPOSIO_GET_TOOL_SCHEMAS",
+  "why_safe": "read-only Composio metadata; touches no external app; no connected account needed",
+  "arguments": {
+   "tool_slugs": [
+    "GITHUB_GET_A_REPOSITORY"
+   ]
+  },
+  "http": [
+   "POST https://backend.composio.dev/api/v3.1/tool_router/session \"HTTP/1.1 201 Created\"",
+   "GET https://backend.composio.dev/api/v3.1/tool_router/session/trs_-nZUkrD2kQQY/tools?limit=500 \"HTTP/1.1 200 OK\"",
+   "POST https://backend.composio.dev/api/v3.1/tool_router/session/trs_-nZUkrD2kQQY/execute \"HTTP/1.1 200 OK\"",
+   "GET https://backend.composio.dev/api/v3.1/tool_router/session/trs_-nZUkrD2kQQY/tools?limit=500 \"HTTP/1.1 200 OK\""
+  ],
+  "response_excerpt": "{\"data\": {\"success\": true, \"tool_schemas\": {\"GITHUB_GET_A_REPOSITORY\": {\"toolkit\": \"GITHUB\", \"tool_slug\": \"GITHUB_GET_A_REPOSITORY\", \"description\": \"Retrieves detailed information about an existing and accessible GitHub repository.\", \"input_schema\": {\"type\": \"object\", \"required\": [\"owner\", \"repo\"], \"properties\": {\"repo\": {\"type\": \"string\", \"examples\": [\"Hello-World\", \"kubernetes\"], \"minLength\": 1, \"description\": \"The name of the repository, without the `.git` extension. This field is case-insensitive.\"}, \"owner\": {\"type\": \"string\", \"examples\": [\"octocat\", \"kubernetes\"], \"minLength\": 1, \"description\": \"The username of the account that owns the repository. This field is case-insensitive.\"}}}}}}, \"error\": null, \"log_id\": \"log_tgTS9Rh5MYpO\", \"instant_charge\": null, \"hook_results\": null, \"result_type\": \"completed\"}",
+  "github_connection": {
+   "is_no_auth": false,
+   "is_active": false,
+   "note": "All GITHUB_* tools need a connected GitHub account; not connected (requires user approval)."
+  }
+ },
+ "session_tools": [
+  "COMPOSIO_GET_TOOL_SCHEMAS",
+  "COMPOSIO_MANAGE_CONNECTIONS",
+  "COMPOSIO_MULTI_EXECUTE_TOOL",
+  "COMPOSIO_REMOTE_BASH_TOOL",
+  "COMPOSIO_REMOTE_WORKBENCH",
+  "COMPOSIO_SEARCH_TOOLS"
+ ],
+ "catalog_cross_check": {
+  "catalog_toolkits": 1883,
+  "apps_with_toolkit": 79,
+  "apps_without_toolkit": [
+   "DealCloud",
+   "LiveAgent",
+   "Gladly",
+   "Vonage",
+   "systeme.io",
+   "WooCommerce",
+   "Salesforce Commerce Cloud",
+   "Magento (Adobe Commerce)",
+   "Squarespace",
+   "Ecwid",
+   "Amazon Selling Partner",
+   "fanbasis",
+   "SE Ranking",
+   "Sherlock",
+   "Waterfall.io",
+   "Binance",
+   "Paygent Connect",
+   "iPayX",
+   "Reducto",
+   "Mermaid CLI",
+   "YouTube Transcript"
+  ],
+  "match_confidence": {
+   "strong": 64,
+   "none": 21,
+   "medium": 14,
+   "weak": 1
+  },
+  "auth_agreement_vs_crawler": {
+   "agree": 61,
+   "partial overlap": 11,
+   "no Composio toolkit": 21,
+   "crawler found no auth": 4,
+   "disagree": 3
+  },
+  "human_rejected_matches": {
+   "Salesforce Commerce Cloud": "Matched 'salesforce' only via the shared salesforce.com domain; that toolkit covers Sales Cloud, not Commerce Cloud.",
+   "Mermaid CLI": "Matched 'mermaid_chart_mcp' (Mermaid Chart SaaS); the brief's app is the open-source mermaid-cli tool.",
+   "YouTube Transcript": "Matched 'youtube_transcript' whose app_url is youtubetranscript.dev; the brief's app is transcriptapi.com, a different vendor."
+  },
+  "output_file": "data/composio_toolkits.json"
+ },
+ "limitations": [
+  "GitHub (and every app toolkit) needs a connected account; none was connected, so no app tool (e.g. GITHUB_GET_A_REPOSITORY) was executed. Only the Composio meta tool COMPOSIO_GET_TOOL_SCHEMAS was executed.",
+  "A Composio toolkit existing does not prove the vendor API is self-serve: Composio may use managed/partner credentials. Official docs remain primary evidence.",
+  "Catalog auth_schemes describe what Composio implements, not every method the vendor supports; 'agree' means Composio's schemes are a subset of what the crawler found.",
+  "Catalog matching is name/slug/domain based; 3 wrong-product matches were rejected by human review, and 'medium'/'weak' matches are labelled.",
+  "Composio was not used for web search or browsing; documentation research is done by the project's own crawler.",
+  "SDK telemetry disabled via Composio(allow_tracking=False)."
+ ]
+}

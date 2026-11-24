@@ -1,0 +1,573 @@
+{
+ "meta": {
+  "method": "Ground truth for the 30-app verification sample (independent of the Groq outputs).\n\n    python verification/build_ground_truth.py  -> verification/ground_truth.json\n\nHow it was built: the reviewer re-read the official pages the crawler fetched\n(verification/inspect_app.py), and checked vendor MCP repos/packages/endpoints for\nexistence (GitHub API, npm registry, HTTP status). This was done blind to Groq's\nanswers for these apps. `None` = not settled from official evidence -> excluded from scoring.\nReviewer: prepared with LLM assistance, blind to Groq's answers. NOT yet re-checked by a person.",
+  "reviewer": "LLM-assisted, built from the fetched official pages blind to Groq's answers; not yet re-checked by a person",
+  "date": "2026-11-24",
+  "null_means": "not settled from official evidence; excluded from scoring"
+ },
+ "apps": [
+  {
+   "id": 3,
+   "app_name": "Pipedrive",
+   "auth_methods": [
+    "OAuth2",
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developers.pipedrive.com/docs/api/v1",
+    "https://developers.pipedrive.com/docs/api/v1/Oauth",
+    "https://pipedrive.com",
+    "https://www.pipedrive.com/en/features/mcp-server"
+   ],
+   "notes": "API token 'can be obtained manually from the Pipedrive app'; OAuth 2.0 for marketplace apps; 14-day free trial plus developer sandbox account; vendor MCP page."
+  },
+  {
+   "id": 4,
+   "app_name": "Attio",
+   "auth_methods": [
+    "OAuth2",
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://docs.attio.com/rest-api/guides/authentication",
+    "https://attio.com",
+    "https://docs.attio.com/mcp/overview"
+   ],
+   "notes": "Auth guide lists OAuth 2.0 and API key; 'Start for free'; Attio MCP is a hosted vendor server. GraphQL only inside the App SDK, not a public API."
+  },
+  {
+   "id": 10,
+   "app_name": "DealCloud",
+   "auth_methods": [
+    "OAuth2",
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Enterprise-only",
+   "mcp_available": "Official",
+   "buildability_verdict": "Requires outreach / partnership",
+   "evidence_urls": [
+    "https://api.docs.dealcloud.com/docs/apikeys",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ],
+   "notes": "API key (client id/secret) exchanged via client_credentials; keys issued inside a customer's DealCloud tenant (Intapp enterprise product); vendor MCP docs."
+  },
+  {
+   "id": 13,
+   "app_name": "Freshdesk",
+   "auth_methods": [
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developers.freshdesk.com/api/",
+    "https://freshdesk.com"
+   ],
+   "notes": "API key (sent via HTTP basic); 'Freshdesk Free' plan tier; homepage 'Explore Freshdesk MCP'."
+  },
+  {
+   "id": 15,
+   "app_name": "Pylon",
+   "auth_methods": [
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Partnership / contact-sales gated",
+   "mcp_available": "Official",
+   "buildability_verdict": "Requires outreach / partnership",
+   "evidence_urls": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com"
+   ],
+   "notes": "Bearer API token generated in the dashboard (static token = key class); product is demo/sales-led; Pylon MCP in docs nav."
+  },
+  {
+   "id": 16,
+   "app_name": "LiveAgent",
+   "auth_methods": [
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "None found",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://support.liveagent.com/840770-Complete-API-reference",
+    "https://www.liveagent.com/pricing/"
+   ],
+   "notes": "API key auth; '30-day free trial, no credit card'; no vendor or registry MCP found."
+  },
+  {
+   "id": 22,
+   "app_name": "Twilio",
+   "auth_methods": [
+    "Basic",
+    "API Key",
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://www.twilio.com/docs/usage/api-security-reference-guide/secure-auth",
+    "https://www.twilio.com/docs/iam/api-keys",
+    "https://github.com/twilio-labs/mcp"
+   ],
+   "notes": "Account SID + Auth Token or API key via Basic; docs: 'Authenticate with OAuth 2.0, Basic, or Digest'; trial account; twilio-labs/mcp exists (GitHub API 200)."
+  },
+  {
+   "id": 29,
+   "app_name": "Aircall",
+   "auth_methods": [
+    "OAuth2",
+    "Basic"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (paid plan required)",
+   "mcp_available": "Third-party/community",
+   "buildability_verdict": "Buildable with limitations",
+   "evidence_urls": [
+    "https://developers.aircall.io/api-references/"
+   ],
+   "notes": "'Authentication can be done through OAuth or Basic Auth' (OAuth for Technology Partners, Basic for Aircall customers); paid product; only community MCP servers."
+  },
+  {
+   "id": 30,
+   "app_name": "Vonage",
+   "auth_methods": [
+    "API Key",
+    "Basic",
+    "Other"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developer.vonage.com/en/getting-started/concepts/authentication",
+    "https://www.vonage.com/communications-apis/pricing"
+   ],
+   "notes": "API key+secret (Basic) and JWT; 'Try it free'; io.github.Vonage/vonage-documentation-mcp is vendor-published but documentation-only."
+  },
+  {
+   "id": 34,
+   "app_name": "GoHighLevel",
+   "auth_methods": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": null,
+   "mcp_available": "Official",
+   "buildability_verdict": "Buildable with limitations",
+   "evidence_urls": [
+    "https://marketplace.gohighlevel.com/docs/",
+    "https://marketplace.gohighlevel.com/docs/Authorization/authorization_doc"
+   ],
+   "notes": "'OAuth 2.0 or Private Integration Token'; marketplace apps go through App Review; docs list an MCP Server page. Credential access (trial vs paid) not settled -> not scored."
+  },
+  {
+   "id": 35,
+   "app_name": "Mailchimp",
+   "auth_methods": [
+    "API Key",
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://mailchimp.com/developer/marketing/api-concepts/authentication",
+    "https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/"
+   ],
+   "notes": "'Authenticate with an API key or OAuth 2 token'; free plan; developer nav lists 'MCP server'."
+  },
+  {
+   "id": 38,
+   "app_name": "Pinterest",
+   "auth_methods": [
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Admin approval / app review",
+   "mcp_available": "None found",
+   "buildability_verdict": "Buildable with limitations",
+   "evidence_urls": [
+    "https://developers.pinterest.com/docs/getting-started/set-up-app/",
+    "https://developers.pinterest.com/docs/getting-started/authentication-and-scopes/",
+    "https://developers.pinterest.com"
+   ],
+   "notes": "Apps must request trial access, which Pinterest reviews; OAuth (Basic only for the client-credential token exchange); homepage says the Pinterest MCP is 'on the way' = not available yet."
+  },
+  {
+   "id": 41,
+   "app_name": "Shopify",
+   "auth_methods": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "api_type": [
+    "GraphQL",
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://shopify.dev/docs/apps/build/authentication-authorization",
+    "https://shopify.dev/docs/api/admin-graphql",
+    "https://www.npmjs.com/package/@shopify/dev-mcp"
+   ],
+   "notes": "OAuth for apps, Admin API access token for custom apps; free Partner account + development stores; Admin GraphQL primary, REST legacy; @shopify/dev-mcp on npm (200)."
+  },
+  {
+   "id": 44,
+   "app_name": "Salesforce Commerce Cloud",
+   "auth_methods": [
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Enterprise-only",
+   "mcp_available": "Official",
+   "buildability_verdict": "Requires outreach / partnership",
+   "evidence_urls": [
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-admin-apis.html",
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-shopper-apis.html",
+    "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/quick-start-landing-page.html"
+   ],
+   "notes": "SLAS / Account Manager API clients on a B2C Commerce instance (enterprise customers); 'Agentic MCP Shopper Tools (Pilot)'."
+  },
+  {
+   "id": 49,
+   "app_name": "Amazon Selling Partner",
+   "auth_methods": [
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Admin approval / app review",
+   "mcp_available": "None found",
+   "buildability_verdict": "Buildable with limitations",
+   "evidence_urls": [
+    "https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer",
+    "https://developer-docs.amazon.com/sp-api/docs/welcome"
+   ],
+   "notes": "Login with Amazon OAuth; a reviewed Developer Profile is required before registering an app; no vendor MCP found."
+  },
+  {
+   "id": 51,
+   "app_name": "DataForSEO",
+   "auth_methods": [
+    "Basic"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://docs.dataforseo.com/v3/auth/",
+    "https://github.com/dataforseo/mcp-server-typescript"
+   ],
+   "notes": "HTTP Basic (login + API password); trial credit on signup; dataforseo/mcp-server-typescript (GitHub 200)."
+  },
+  {
+   "id": 57,
+   "app_name": "Bright Data",
+   "auth_methods": [
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free trial / sandbox)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://docs.brightdata.com/api-reference/authentication",
+    "https://brightdata.com",
+    "https://docs.brightdata.com/mcp-server/overview"
+   ],
+   "notes": "API key as Bearer; 'Start free trial'; vendor MCP docs + brightdata/brightdata-mcp repo."
+  },
+  {
+   "id": 60,
+   "app_name": "Clay",
+   "auth_methods": null,
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Enterprise-only",
+   "mcp_available": "Official",
+   "buildability_verdict": "Requires outreach / partnership",
+   "evidence_urls": [
+    "https://university.clay.com/docs/http-api-integration-overview",
+    "https://www.clay.com/pricing"
+   ],
+   "notes": "The 'HTTP API' doc is Clay calling external APIs, not a public Clay API; programmatic access is enterprise-tier; Clay MCP documented. Auth model not settled -> not scored."
+  },
+  {
+   "id": 61,
+   "app_name": "GitHub",
+   "auth_methods": [
+    "OAuth2",
+    "Personal Access Token",
+    "Other"
+   ],
+   "api_type": [
+    "REST",
+    "GraphQL"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+    "https://docs.github.com/en/graphql",
+    "https://github.com/github/github-mcp-server"
+   ],
+   "notes": "OAuth apps, PATs, GitHub App (JWT / installation token); REST + GraphQL; github/github-mcp-server (GitHub 200)."
+  },
+  {
+   "id": 62,
+   "app_name": "Vercel",
+   "auth_methods": [
+    "Personal Access Token",
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://vercel.com/docs/rest-api/reference/welcome",
+    "https://vercel.com/docs/mcp"
+   ],
+   "notes": "'Vercel Access Tokens are required'; OAuth for integrations; free Hobby plan; official MCP docs, mcp.vercel.com answers 401 (live, auth-protected)."
+  },
+  {
+   "id": 64,
+   "app_name": "Cloudflare",
+   "auth_methods": [
+    "API Key",
+    "Personal Access Token"
+   ],
+   "api_type": [
+    "REST",
+    "GraphQL"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developers.cloudflare.com/fundamentals/api/get-started/create-token/",
+    "https://developers.cloudflare.com/api/",
+    "https://github.com/cloudflare/mcp-server-cloudflare"
+   ],
+   "notes": "API tokens (and legacy global API key); REST + GraphQL Analytics API; free plan; cloudflare/mcp-server-cloudflare + registry com.cloudflare.mcp."
+  },
+  {
+   "id": 71,
+   "app_name": "Notion",
+   "auth_methods": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developers.notion.com/docs/authorization",
+    "https://developers.notion.com/reference/authentication",
+    "https://github.com/makenotion/notion-mcp-server"
+   ],
+   "notes": "Internal integration token + OAuth for public integrations; free plan; makenotion/notion-mcp-server."
+  },
+  {
+   "id": 73,
+   "app_name": "Linear",
+   "auth_methods": [
+    "OAuth2",
+    "API Key"
+   ],
+   "api_type": [
+    "GraphQL"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://linear.app/developers/graphql",
+    "https://linear.app/developers/oauth-2-0-authentication",
+    "https://linear.app/docs/mcp"
+   ],
+   "notes": "GraphQL only; OAuth 2.0 + personal API keys; free plan; registry app.linear/linear + MCP docs page."
+  },
+  {
+   "id": 77,
+   "app_name": "ClickUp",
+   "auth_methods": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developer.clickup.com/docs/authentication",
+    "https://clickup.com/api"
+   ],
+   "notes": "Personal API token + OAuth; Free Forever plan; 'Connect your AI with ClickUp using our MCP Server'."
+  },
+  {
+   "id": 84,
+   "app_name": "Paygent Connect",
+   "auth_methods": [],
+   "api_type": [],
+   "credential_access": "Unclear",
+   "mcp_available": "None found",
+   "buildability_verdict": "Insufficient evidence",
+   "evidence_urls": [
+    "https://docs.nmi.com/llms.txt"
+   ],
+   "notes": "No Paygent Connect developer docs found by crawler or web search. NMI (stated underlying gateway) has docs, but the Paygent-NMI relationship is unverified, so nothing about Paygent's own API can be confirmed."
+  },
+  {
+   "id": 87,
+   "app_name": "Xero",
+   "auth_methods": [
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://developer.xero.com/documentation/guides/oauth2/overview/",
+    "https://developer.xero.com/documentation/getting-started-guide/",
+    "https://github.com/XeroAPI/xero-mcp-server"
+   ],
+   "notes": "OAuth 2.0 only; free developer account + demo company (partner program only beyond 25 connections); XeroAPI/xero-mcp-server."
+  },
+  {
+   "id": 89,
+   "app_name": "Ramp",
+   "auth_methods": [
+    "OAuth2"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Admin approval / app review",
+   "mcp_available": "Official",
+   "buildability_verdict": "Buildable with limitations",
+   "evidence_urls": [
+    "https://docs.ramp.com/llms.txt",
+    "https://github.com/ramp-public/ramp-mcp"
+   ],
+   "notes": "OAuth (client credentials / auth code) via a developer app created by an admin of an approved Ramp business account; ramp-public/ramp-mcp (301 = renamed, exists)."
+  },
+  {
+   "id": 91,
+   "app_name": "NotebookLM",
+   "auth_methods": [
+    "OAuth2",
+    "Other"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": null,
+   "mcp_available": "Third-party/community",
+   "buildability_verdict": null,
+   "evidence_urls": [
+    "https://cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+   ],
+   "notes": "NotebookLM Enterprise API on Google Cloud (OAuth / service-account credentials) needs an enterprise license; consumer NotebookLM has no API. Access and verdict not settled -> not scored. Only community MCP servers."
+  },
+  {
+   "id": 92,
+   "app_name": "Otter AI",
+   "auth_methods": [],
+   "api_type": [],
+   "credential_access": null,
+   "mcp_available": "Official",
+   "buildability_verdict": null,
+   "evidence_urls": [
+    "https://help.otter.ai/",
+    "https://mcp.otter.ai/mcp"
+   ],
+   "notes": "No public REST API documented in the fetched help center; official hosted MCP endpoint mcp.otter.ai answers 401 (live, OAuth). Access and verdict not scored."
+  },
+  {
+   "id": 95,
+   "app_name": "Reducto",
+   "auth_methods": [
+    "API Key"
+   ],
+   "api_type": [
+    "REST"
+   ],
+   "credential_access": "Self-serve (free)",
+   "mcp_available": "Official",
+   "buildability_verdict": "Ready to build",
+   "evidence_urls": [
+    "https://docs.reducto.ai/quickstart",
+    "https://docs.reducto.ai/"
+   ],
+   "notes": "'Create a Reducto account / Get your API key'; docs list a 'Reducto MCP server'."
+  }
+ ]
+}

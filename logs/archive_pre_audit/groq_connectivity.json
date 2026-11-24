@@ -1,0 +1,59 @@
+{
+ "timestamp": "2026-11-24T14:32:28Z",
+ "steps": [
+  {
+   "step": "init_client",
+   "ok": true,
+   "detail": null
+  },
+  {
+   "step": "models.list",
+   "ok": true,
+   "detail": "11 models"
+  },
+  {
+   "step": "select_model",
+   "ok": true,
+   "detail": "openai/gpt-oss-120b"
+  },
+  {
+   "step": "chat.completions.create",
+   "ok": true,
+   "detail": "pong"
+  },
+  {
+   "step": "structured_output(json_schema strict)",
+   "ok": true,
+   "detail": {
+    "app": "DemoApp",
+    "auth_methods": [
+     "OAuth2",
+     "API Key"
+    ],
+    "confidence": "High"
+   }
+  }
+ ],
+ "sdk_version": "1.7.0",
+ "available_models": [
+  "allam-2-7b",
+  "canopylabs/orpheus-arabic-saudi",
+  "canopylabs/orpheus-v1-english",
+  "meta-llama/llama-prompt-guard-2-22m",
+  "meta-llama/llama-prompt-guard-2-86m",
+  "openai/gpt-oss-120b",
+  "openai/gpt-oss-20b",
+  "openai/gpt-oss-safeguard-20b",
+  "qwen/qwen3.8-27b",
+  "whisper-large-v3",
+  "whisper-large-v3-turbo"
+ ],
+ "selected_model": "openai/gpt-oss-120b",
+ "strict_json_schema_documented": true,
+ "structured_output_supported": true,
+ "usage": {
+  "calls": 2,
+  "prompt_tokens": 339,
+  "completion_tokens": 168
+ }
+}

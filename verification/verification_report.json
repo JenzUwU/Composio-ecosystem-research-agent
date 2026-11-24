@@ -1,0 +1,6461 @@
+{
+ "applications_total": 100,
+ "applications_adjudicated": 100,
+ "applications_with_evidence": 99,
+ "applications_with_fetched_official_evidence": 96,
+ "sample": {
+  "apps": 30,
+  "scorable_claims": 144,
+  "excluded_claims": 6,
+  "method": "Ground truth for the 30-app verification sample (independent of the Groq outputs).\n\n    python verification/build_ground_truth.py  -> verification/ground_truth.json\n\nHow it was built: the reviewer re-read the official pages the crawler fetched\n(verification/inspect_app.py), and checked vendor MCP repos/packages/endpoints for\nexistence (GitHub API, npm registry, HTTP status). This was done blind to Groq's\nanswers for these apps. `None` = not settled from official evidence -> excluded from scoring.\nReviewer: prepared with LLM assistance, blind to Groq's answers. NOT yet re-checked by a person.",
+  "reviewer": "LLM-assisted, built from the fetched official pages blind to Groq's answers; not yet re-checked by a person"
+ },
+ "scoring_rules": "- auth_methods are compared as coarse classes {OAuth2, Key/Token, Basic, Other}, because\n    \"API key\" vs \"personal access token\" vs \"bearer token\" is mostly naming, not substance.\n    exact class-set match = correct; overlapping but different = partial; else incorrect.\n  - api_type: same set = correct; overlap = partial; else incorrect.\n  - credential_access: exact = correct; same coarse group (self-serve vs gated) = partial.\n  - mcp_available, buildability_verdict: exact match only.\n  - ground-truth fields that are null are not scored.\n  - \"accuracy\" = correct / scored. \"lenient accuracy\" = (correct + partial) / scored.",
+ "stages": [
+  {
+   "stage": "Pass 1: naive crawler (homepage only)",
+   "apps_covered": 30,
+   "claims_scored": 144,
+   "correct": 43,
+   "partial": 11,
+   "incorrect": 90,
+   "accuracy": 0.299,
+   "lenient_accuracy": 0.375,
+   "per_field": {
+    "auth_methods": {
+     "correct": 6,
+     "partial": 7,
+     "incorrect": 16
+    },
+    "api_type": {
+     "correct": 14,
+     "partial": 1,
+     "incorrect": 15
+    },
+    "credential_access": {
+     "correct": 5,
+     "partial": 3,
+     "incorrect": 19
+    },
+    "mcp_available": {
+     "correct": 13,
+     "partial": 0,
+     "incorrect": 17
+    },
+    "buildability_verdict": {
+     "correct": 5,
+     "partial": 0,
+     "incorrect": 23
+    }
+   },
+   "misses": [
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Partnership / contact-sales gated"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (paid plan required)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "None found"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "Basic",
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2",
+      "Basic"
+     ]
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (paid plan required)"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Third-party/community"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Other"
+     ],
+     "truth": [
+      "API Key",
+      "Basic",
+      "Other"
+     ]
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 34,
+     "app": "GoHighLevel",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 34,
+     "app": "GoHighLevel",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 34,
+     "app": "GoHighLevel",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 34,
+     "app": "GoHighLevel",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free)",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "None found"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "GraphQL",
+      "REST"
+     ]
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "None found"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "Basic"
+     ]
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Admin approval / app review",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 57,
+     "app": "Bright Data",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 57,
+     "app": "Bright Data",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "Personal Access Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ]
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST"
+     ],
+     "truth": [
+      "REST",
+      "GraphQL"
+     ]
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 62,
+     "app": "Vercel",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Bearer Token"
+     ],
+     "truth": [
+      "Personal Access Token",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Enterprise-only",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 84,
+     "app": "Paygent Connect",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "None found"
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "Other"
+     ]
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Third-party/community"
+    },
+    {
+     "id": 92,
+     "app": "Otter AI",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Not checked",
+     "truth": "Official"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    }
+   ]
+  },
+  {
+   "stage": "Pass 2: deep crawler loop (regex)",
+   "apps_covered": 30,
+   "claims_scored": 144,
+   "correct": 66,
+   "partial": 22,
+   "incorrect": 56,
+   "accuracy": 0.458,
+   "lenient_accuracy": 0.611,
+   "per_field": {
+    "auth_methods": {
+     "correct": 11,
+     "partial": 17,
+     "incorrect": 1
+    },
+    "api_type": {
+     "correct": 25,
+     "partial": 2,
+     "incorrect": 3
+    },
+    "credential_access": {
+     "correct": 3,
+     "partial": 3,
+     "incorrect": 21
+    },
+    "mcp_available": {
+     "correct": 23,
+     "partial": 0,
+     "incorrect": 7
+    },
+    "buildability_verdict": {
+     "correct": 4,
+     "partial": 0,
+     "incorrect": 24
+    }
+   },
+   "misses": [
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 3,
+     "app": "Pipedrive",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Partnership / contact-sales gated"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "None found"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Basic"
+     ]
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (paid plan required)"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "Third-party/community"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "None found"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Basic",
+      "Personal Access Token"
+     ],
+     "truth": [
+      "Basic"
+     ]
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Admin approval / app review",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 57,
+     "app": "Bright Data",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 57,
+     "app": "Bright Data",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 57,
+     "app": "Bright Data",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "api_type",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ]
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Enterprise-only",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Admin approval / app review",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 73,
+     "app": "Linear",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Enterprise-only",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 77,
+     "app": "ClickUp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Enterprise-only",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "auth_methods",
+     "verdict": "incorrect",
+     "predicted": [],
+     "truth": [
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "truth": [
+      "OAuth2",
+      "Other"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    }
+   ]
+  },
+  {
+   "stage": "Pass 3: Groq LLM adjudication",
+   "apps_covered": 30,
+   "claims_scored": 144,
+   "correct": 90,
+   "partial": 23,
+   "incorrect": 31,
+   "accuracy": 0.625,
+   "lenient_accuracy": 0.785,
+   "per_field": {
+    "auth_methods": {
+     "correct": 17,
+     "partial": 12,
+     "incorrect": 0
+    },
+    "api_type": {
+     "correct": 27,
+     "partial": 3,
+     "incorrect": 0
+    },
+    "credential_access": {
+     "correct": 12,
+     "partial": 8,
+     "incorrect": 7
+    },
+    "mcp_available": {
+     "correct": 15,
+     "partial": 0,
+     "incorrect": 15
+    },
+    "buildability_verdict": {
+     "correct": 19,
+     "partial": 0,
+     "incorrect": 9
+    }
+   },
+   "misses": [
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Admin approval / app review",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "None found",
+     "truth": "Official"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "OAuth2"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free)",
+     "truth": "Partnership / contact-sales gated"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (paid plan required)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "Basic",
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "Basic"
+     ]
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (paid plan required)"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "Third-party/community"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "Bearer Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key",
+      "Basic",
+      "Other"
+     ]
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "None found"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "None found",
+     "truth": "Official"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "None found"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Bearer Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ]
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST"
+     ],
+     "truth": [
+      "REST",
+      "GraphQL"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Personal Access Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 84,
+     "app": "Paygent Connect",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "None found"
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "Other"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    }
+   ]
+  }
+ ],
+ "composio_auth_reference": {
+  "stage": "Composio catalog auth schemes (reference)",
+  "apps_covered": 23,
+  "claims_scored": 22,
+  "correct": 14,
+  "partial": 6,
+  "incorrect": 2,
+  "accuracy": 0.636,
+  "lenient_accuracy": 0.909,
+  "per_field": {
+   "auth_methods": {
+    "correct": 14,
+    "partial": 6,
+    "incorrect": 2
+   }
+  },
+  "misses": [
+   {
+    "id": 4,
+    "app": "Attio",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "OAuth2"
+    ],
+    "truth": [
+     "OAuth2",
+     "API Key"
+    ]
+   },
+   {
+    "id": 15,
+    "app": "Pylon",
+    "field": "auth_methods",
+    "verdict": "incorrect",
+    "predicted": [
+     "Other"
+    ],
+    "truth": [
+     "API Key"
+    ]
+   },
+   {
+    "id": 22,
+    "app": "Twilio",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "API Key",
+     "Basic",
+     "Other"
+    ],
+    "truth": [
+     "Basic",
+     "API Key",
+     "OAuth2"
+    ]
+   },
+   {
+    "id": 35,
+    "app": "Mailchimp",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "OAuth2"
+    ],
+    "truth": [
+     "API Key",
+     "OAuth2"
+    ]
+   },
+   {
+    "id": 41,
+    "app": "Shopify",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "OAuth2",
+     "Other"
+    ],
+    "truth": [
+     "OAuth2",
+     "Personal Access Token"
+    ]
+   },
+   {
+    "id": 61,
+    "app": "GitHub",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "OAuth2"
+    ],
+    "truth": [
+     "OAuth2",
+     "Personal Access Token",
+     "Other"
+    ]
+   },
+   {
+    "id": 91,
+    "app": "NotebookLM",
+    "field": "auth_methods",
+    "verdict": "partial",
+    "predicted": [
+     "OAuth2"
+    ],
+    "truth": [
+     "OAuth2",
+     "Other"
+    ]
+   },
+   {
+    "id": 92,
+    "app": "Otter AI",
+    "field": "auth_methods",
+    "verdict": "incorrect",
+    "predicted": [
+     "Other"
+    ],
+    "truth": []
+   }
+  ]
+ },
+ "groq_by_model": {
+  "openai/gpt-oss-120b": {
+   "stage": "Groq openai/gpt-oss-120b",
+   "apps_covered": 18,
+   "claims_scored": 87,
+   "correct": 48,
+   "partial": 18,
+   "incorrect": 21,
+   "accuracy": 0.552,
+   "lenient_accuracy": 0.759,
+   "per_field": {
+    "auth_methods": {
+     "correct": 9,
+     "partial": 9,
+     "incorrect": 0
+    },
+    "api_type": {
+     "correct": 16,
+     "partial": 2,
+     "incorrect": 0
+    },
+    "credential_access": {
+     "correct": 5,
+     "partial": 7,
+     "incorrect": 4
+    },
+    "mcp_available": {
+     "correct": 7,
+     "partial": 0,
+     "incorrect": 11
+    },
+    "buildability_verdict": {
+     "correct": 11,
+     "partial": 0,
+     "incorrect": 6
+    }
+   },
+   "misses": [
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Admin approval / app review",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 4,
+     "app": "Attio",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "None found",
+     "truth": "Official"
+    },
+    {
+     "id": 10,
+     "app": "DealCloud",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "OAuth2"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 13,
+     "app": "Freshdesk",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Personal Access Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free)",
+     "truth": "Partnership / contact-sales gated"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 15,
+     "app": "Pylon",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (paid plan required)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 16,
+     "app": "LiveAgent",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Buildable with limitations",
+     "truth": "Ready to build"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "Basic",
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 22,
+     "app": "Twilio",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "Basic"
+     ]
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (paid plan required)"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Official",
+     "truth": "Third-party/community"
+    },
+    {
+     "id": 29,
+     "app": "Aircall",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "API Key",
+      "Bearer Token",
+      "Other"
+     ],
+     "truth": [
+      "API Key",
+      "Basic",
+      "Other"
+     ]
+    },
+    {
+     "id": 30,
+     "app": "Vonage",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "truth": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "id": 35,
+     "app": "Mailchimp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "None found"
+    },
+    {
+     "id": 38,
+     "app": "Pinterest",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 41,
+     "app": "Shopify",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 44,
+     "app": "Salesforce Commerce Cloud",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "None found",
+     "truth": "Official"
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST",
+      "GraphQL"
+     ],
+     "truth": [
+      "REST"
+     ]
+    },
+    {
+     "id": 49,
+     "app": "Amazon Selling Partner",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "None found"
+    },
+    {
+     "id": 51,
+     "app": "DataForSEO",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free)",
+     "truth": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Bearer Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ]
+    },
+    {
+     "id": 61,
+     "app": "GitHub",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Third-party/community",
+     "truth": "Official"
+    }
+   ],
+   "apps_adjudicated_total": 56,
+   "sample_app_ids": [
+    3,
+    4,
+    10,
+    13,
+    15,
+    16,
+    22,
+    29,
+    30,
+    34,
+    35,
+    38,
+    41,
+    44,
+    49,
+    51,
+    61,
+    92
+   ],
+   "review_flag_rate_all_apps": 0.143,
+   "insufficient_evidence_rate_all_apps": 0.054,
+   "retried_apps": 1
+  },
+  "openai/gpt-oss-20b": {
+   "stage": "Groq openai/gpt-oss-20b",
+   "apps_covered": 12,
+   "claims_scored": 57,
+   "correct": 42,
+   "partial": 5,
+   "incorrect": 10,
+   "accuracy": 0.737,
+   "lenient_accuracy": 0.825,
+   "per_field": {
+    "auth_methods": {
+     "correct": 8,
+     "partial": 3,
+     "incorrect": 0
+    },
+    "api_type": {
+     "correct": 11,
+     "partial": 1,
+     "incorrect": 0
+    },
+    "credential_access": {
+     "correct": 7,
+     "partial": 1,
+     "incorrect": 3
+    },
+    "mcp_available": {
+     "correct": 8,
+     "partial": 0,
+     "incorrect": 4
+    },
+    "buildability_verdict": {
+     "correct": 8,
+     "partial": 0,
+     "incorrect": 3
+    }
+   },
+   "misses": [
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Enterprise-only"
+    },
+    {
+     "id": 60,
+     "app": "Clay",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Ready to build",
+     "truth": "Requires outreach / partnership"
+    },
+    {
+     "id": 64,
+     "app": "Cloudflare",
+     "field": "api_type",
+     "verdict": "partial",
+     "predicted": [
+      "REST"
+     ],
+     "truth": [
+      "REST",
+      "GraphQL"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "Personal Access Token"
+     ],
+     "truth": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "id": 71,
+     "app": "Notion",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 84,
+     "app": "Paygent Connect",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "None found"
+    },
+    {
+     "id": 87,
+     "app": "Xero",
+     "field": "credential_access",
+     "verdict": "partial",
+     "predicted": "Self-serve (free trial / sandbox)",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Admin approval / app review"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 89,
+     "app": "Ramp",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Insufficient evidence",
+     "truth": "Buildable with limitations"
+    },
+    {
+     "id": 91,
+     "app": "NotebookLM",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "OAuth2",
+      "Other"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "auth_methods",
+     "verdict": "partial",
+     "predicted": [
+      "OAuth2",
+      "API Key"
+     ],
+     "truth": [
+      "API Key"
+     ]
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "credential_access",
+     "verdict": "incorrect",
+     "predicted": "Partnership / contact-sales gated",
+     "truth": "Self-serve (free)"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "mcp_available",
+     "verdict": "incorrect",
+     "predicted": "Unclear",
+     "truth": "Official"
+    },
+    {
+     "id": 95,
+     "app": "Reducto",
+     "field": "buildability_verdict",
+     "verdict": "incorrect",
+     "predicted": "Requires outreach / partnership",
+     "truth": "Ready to build"
+    }
+   ],
+   "apps_adjudicated_total": 44,
+   "sample_app_ids": [
+    57,
+    60,
+    62,
+    64,
+    71,
+    73,
+    77,
+    84,
+    87,
+    89,
+    91,
+    95
+   ],
+   "review_flag_rate_all_apps": 0.341,
+   "insufficient_evidence_rate_all_apps": 0.159,
+   "retried_apps": 7
+  }
+ },
+ "run_history": {
+  "runs": [
+   {
+    "started": "2026-11-24 20:06:13",
+    "done_at_start": 0,
+    "queued": 3,
+    "records_at_finish": 3,
+    "calls": 9,
+    "prompt_tokens": 17801,
+    "completion_tokens": 2960,
+    "kind": "trial"
+   },
+   {
+    "started": "2026-11-24 20:10:49",
+    "done_at_start": 3,
+    "queued": 1,
+    "records_at_finish": 4,
+    "calls": 2,
+    "prompt_tokens": 3818,
+    "completion_tokens": 868,
+    "kind": "trial"
+   },
+   {
+    "started": "2026-11-24 20:11:07",
+    "done_at_start": 4,
+    "queued": 96,
+    "records_at_finish": 92,
+    "calls": 184,
+    "prompt_tokens": 315701,
+    "completion_tokens": 60707,
+    "kind": "main"
+   },
+   {
+    "started": "2026-11-24 21:39:46",
+    "done_at_start": 92,
+    "queued": 8,
+    "records_at_finish": 100,
+    "calls": 16,
+    "prompt_tokens": 26708,
+    "completion_tokens": 4829,
+    "kind": "retry"
+   }
+  ],
+  "records_after_main_run": 92,
+  "records_final": 100,
+  "calls": 211,
+  "prompt_tokens": 364028,
+  "completion_tokens": 69364,
+  "total_tokens": 433392,
+  "note": "Usage is summed from the Groq client's own counters in logs/adjudication.log and covers successful responses only; rejected (HTTP 400) generations may have consumed additional unreported tokens."
+ },
+ "failure_history_entries": 9,
+ "checkpoint_inspection": {
+  "inspected_at": "2026-11-24T17:11:49Z",
+  "apps_total": 100,
+  "records_in_checkpoint": 100,
+  "complete_valid": 100,
+  "malformed": [],
+  "duplicate_ids": [],
+  "missing_no_record": [],
+  "unresolved_after_retry": [],
+  "complete_ids": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15,
+   16,
+   17,
+   18,
+   19,
+   20,
+   21,
+   22,
+   23,
+   24,
+   25,
+   26,
+   27,
+   28,
+   29,
+   30,
+   31,
+   32,
+   33,
+   34,
+   35,
+   36,
+   37,
+   38,
+   39,
+   40,
+   41,
+   42,
+   43,
+   44,
+   45,
+   46,
+   47,
+   48,
+   49,
+   50,
+   51,
+   52,
+   53,
+   54,
+   55,
+   56,
+   57,
+   58,
+   59,
+   60,
+   61,
+   62,
+   63,
+   64,
+   65,
+   66,
+   67,
+   68,
+   69,
+   70,
+   71,
+   72,
+   73,
+   74,
+   75,
+   76,
+   77,
+   78,
+   79,
+   80,
+   81,
+   82,
+   83,
+   84,
+   85,
+   86,
+   87,
+   88,
+   89,
+   90,
+   91,
+   92,
+   93,
+   94,
+   95,
+   96,
+   97,
+   98,
+   99,
+   100
+  ]
+ },
+ "groq_attempts": {
+  "failed_attempts": 9,
+  "apps_with_failed_attempt": 8,
+  "by_code": {
+   "json_validate_failed": 7,
+   "output_parse_failed": 1,
+   "tool_use_failed": 1
+  }
+ },
+ "groq_by_model_caveat": "Models were not assigned at random: gpt-oss-20b only adjudicated apps after gpt-oss-120b hit its daily token cap, so each model's sample apps differ (ids and category mix). Small n per model; treat as indicative.",
+ "applications_unresolved": [],
+ "claims_changed_crawler_to_groq": 281,
+ "apps_changed_crawler_to_groq": 95,
+ "unsupported_citations_dropped": 0,
+ "review_corrections_applied": 54,
+ "review_corrections": [
+  {
+   "id": 4,
+   "app": "Attio",
+   "field": "api_type",
+   "groq": [
+    "REST",
+    "GraphQL"
+   ],
+   "reviewed": [
+    "REST"
+   ],
+   "evidence": [
+    "https://docs.attio.com/rest-api/guides/authentication",
+    "https://attio.com",
+    "https://docs.attio.com/mcp/overview"
+   ]
+  },
+  {
+   "id": 4,
+   "app": "Attio",
+   "field": "credential_access",
+   "groq": "Admin approval / app review",
+   "reviewed": "Self-serve (free)",
+   "evidence": [
+    "https://docs.attio.com/rest-api/guides/authentication",
+    "https://attio.com",
+    "https://docs.attio.com/mcp/overview"
+   ]
+  },
+  {
+   "id": 4,
+   "app": "Attio",
+   "field": "buildability_verdict",
+   "groq": "Buildable with limitations",
+   "reviewed": "Ready to build",
+   "evidence": [
+    "https://docs.attio.com/rest-api/guides/authentication",
+    "https://attio.com",
+    "https://docs.attio.com/mcp/overview"
+   ]
+  },
+  {
+   "id": 10,
+   "app": "DealCloud",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key",
+    "Basic"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "API Key"
+   ],
+   "evidence": [
+    "https://api.docs.dealcloud.com/docs/apikeys",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ]
+  },
+  {
+   "id": 10,
+   "app": "DealCloud",
+   "field": "credential_access",
+   "groq": "Unclear",
+   "reviewed": "Enterprise-only",
+   "evidence": [
+    "https://api.docs.dealcloud.com/docs/apikeys",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ]
+  },
+  {
+   "id": 10,
+   "app": "DealCloud",
+   "field": "mcp_available",
+   "groq": "None found",
+   "reviewed": "Official",
+   "evidence": [
+    "https://api.docs.dealcloud.com/docs/apikeys",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ]
+  },
+  {
+   "id": 10,
+   "app": "DealCloud",
+   "field": "buildability_verdict",
+   "groq": "Buildable with limitations",
+   "reviewed": "Requires outreach / partnership",
+   "evidence": [
+    "https://api.docs.dealcloud.com/docs/apikeys",
+    "https://api.docs.dealcloud.com/docs/token",
+    "https://api.docs.dealcloud.com/mcp/authentication"
+   ]
+  },
+  {
+   "id": 13,
+   "app": "Freshdesk",
+   "field": "auth_methods",
+   "groq": [
+    "API Key",
+    "OAuth2"
+   ],
+   "reviewed": [
+    "API Key"
+   ],
+   "evidence": [
+    "https://developers.freshdesk.com/api/",
+    "https://freshdesk.com"
+   ]
+  },
+  {
+   "id": 13,
+   "app": "Freshdesk",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://developers.freshdesk.com/api/",
+    "https://freshdesk.com"
+   ]
+  },
+  {
+   "id": 15,
+   "app": "Pylon",
+   "field": "auth_methods",
+   "groq": [
+    "Personal Access Token",
+    "Other"
+   ],
+   "reviewed": [
+    "API Key"
+   ],
+   "evidence": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com"
+   ]
+  },
+  {
+   "id": 15,
+   "app": "Pylon",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Partnership / contact-sales gated",
+   "evidence": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com"
+   ]
+  },
+  {
+   "id": 15,
+   "app": "Pylon",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com"
+   ]
+  },
+  {
+   "id": 15,
+   "app": "Pylon",
+   "field": "buildability_verdict",
+   "groq": "Ready to build",
+   "reviewed": "Requires outreach / partnership",
+   "evidence": [
+    "https://docs.usepylon.com/pylon-docs/developer/api/authentication",
+    "https://usepylon.com"
+   ]
+  },
+  {
+   "id": 16,
+   "app": "LiveAgent",
+   "field": "credential_access",
+   "groq": "Self-serve (paid plan required)",
+   "reviewed": "Self-serve (free trial / sandbox)",
+   "evidence": [
+    "https://support.liveagent.com/840770-Complete-API-reference",
+    "https://www.liveagent.com/pricing/"
+   ]
+  },
+  {
+   "id": 16,
+   "app": "LiveAgent",
+   "field": "buildability_verdict",
+   "groq": "Buildable with limitations",
+   "reviewed": "Ready to build",
+   "evidence": [
+    "https://support.liveagent.com/840770-Complete-API-reference",
+    "https://www.liveagent.com/pricing/"
+   ]
+  },
+  {
+   "id": 22,
+   "app": "Twilio",
+   "field": "auth_methods",
+   "groq": [
+    "API Key",
+    "Basic"
+   ],
+   "reviewed": [
+    "Basic",
+    "API Key",
+    "OAuth2"
+   ],
+   "evidence": [
+    "https://www.twilio.com/docs/usage/api-security-reference-guide/secure-auth",
+    "https://www.twilio.com/docs/iam/api-keys",
+    "https://github.com/twilio-labs/mcp"
+   ]
+  },
+  {
+   "id": 22,
+   "app": "Twilio",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Self-serve (free trial / sandbox)",
+   "evidence": [
+    "https://www.twilio.com/docs/usage/api-security-reference-guide/secure-auth",
+    "https://www.twilio.com/docs/iam/api-keys",
+    "https://github.com/twilio-labs/mcp"
+   ]
+  },
+  {
+   "id": 22,
+   "app": "Twilio",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://www.twilio.com/docs/usage/api-security-reference-guide/secure-auth",
+    "https://www.twilio.com/docs/iam/api-keys",
+    "https://github.com/twilio-labs/mcp"
+   ]
+  },
+  {
+   "id": 29,
+   "app": "Aircall",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "Basic"
+   ],
+   "evidence": [
+    "https://developers.aircall.io/api-references/"
+   ]
+  },
+  {
+   "id": 29,
+   "app": "Aircall",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Self-serve (paid plan required)",
+   "evidence": [
+    "https://developers.aircall.io/api-references/"
+   ]
+  },
+  {
+   "id": 29,
+   "app": "Aircall",
+   "field": "mcp_available",
+   "groq": "Official",
+   "reviewed": "Third-party/community",
+   "evidence": [
+    "https://developers.aircall.io/api-references/"
+   ]
+  },
+  {
+   "id": 29,
+   "app": "Aircall",
+   "field": "buildability_verdict",
+   "groq": "Ready to build",
+   "reviewed": "Buildable with limitations",
+   "evidence": [
+    "https://developers.aircall.io/api-references/"
+   ]
+  },
+  {
+   "id": 30,
+   "app": "Vonage",
+   "field": "auth_methods",
+   "groq": [
+    "API Key",
+    "Bearer Token",
+    "Other"
+   ],
+   "reviewed": [
+    "API Key",
+    "Basic",
+    "Other"
+   ],
+   "evidence": [
+    "https://developer.vonage.com/en/getting-started/concepts/authentication",
+    "https://www.vonage.com/communications-apis/pricing"
+   ]
+  },
+  {
+   "id": 30,
+   "app": "Vonage",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Self-serve (free trial / sandbox)",
+   "evidence": [
+    "https://developer.vonage.com/en/getting-started/concepts/authentication",
+    "https://www.vonage.com/communications-apis/pricing"
+   ]
+  },
+  {
+   "id": 35,
+   "app": "Mailchimp",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key",
+    "Basic"
+   ],
+   "reviewed": [
+    "API Key",
+    "OAuth2"
+   ],
+   "evidence": [
+    "https://mailchimp.com/developer/marketing/api-concepts/authentication",
+    "https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/"
+   ]
+  },
+  {
+   "id": 35,
+   "app": "Mailchimp",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://mailchimp.com/developer/marketing/api-concepts/authentication",
+    "https://mailchimp.com/developer/marketing/guides/access-user-data-oauth-2/"
+   ]
+  },
+  {
+   "id": 38,
+   "app": "Pinterest",
+   "field": "credential_access",
+   "groq": "Self-serve (free trial / sandbox)",
+   "reviewed": "Admin approval / app review",
+   "evidence": [
+    "https://developers.pinterest.com/docs/getting-started/set-up-app/",
+    "https://developers.pinterest.com/docs/getting-started/authentication-and-scopes/",
+    "https://developers.pinterest.com"
+   ]
+  },
+  {
+   "id": 38,
+   "app": "Pinterest",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "None found",
+   "evidence": [
+    "https://developers.pinterest.com/docs/getting-started/set-up-app/",
+    "https://developers.pinterest.com/docs/getting-started/authentication-and-scopes/",
+    "https://developers.pinterest.com"
+   ]
+  },
+  {
+   "id": 38,
+   "app": "Pinterest",
+   "field": "buildability_verdict",
+   "groq": "Ready to build",
+   "reviewed": "Buildable with limitations",
+   "evidence": [
+    "https://developers.pinterest.com/docs/getting-started/set-up-app/",
+    "https://developers.pinterest.com/docs/getting-started/authentication-and-scopes/",
+    "https://developers.pinterest.com"
+   ]
+  },
+  {
+   "id": 41,
+   "app": "Shopify",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "evidence": [
+    "https://shopify.dev/docs/apps/build/authentication-authorization",
+    "https://shopify.dev/docs/api/admin-graphql",
+    "https://www.npmjs.com/package/@shopify/dev-mcp"
+   ]
+  },
+  {
+   "id": 41,
+   "app": "Shopify",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Self-serve (free trial / sandbox)",
+   "evidence": [
+    "https://shopify.dev/docs/apps/build/authentication-authorization",
+    "https://shopify.dev/docs/api/admin-graphql",
+    "https://www.npmjs.com/package/@shopify/dev-mcp"
+   ]
+  },
+  {
+   "id": 41,
+   "app": "Shopify",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://shopify.dev/docs/apps/build/authentication-authorization",
+    "https://shopify.dev/docs/api/admin-graphql",
+    "https://www.npmjs.com/package/@shopify/dev-mcp"
+   ]
+  },
+  {
+   "id": 44,
+   "app": "Salesforce Commerce Cloud",
+   "field": "credential_access",
+   "groq": "Partnership / contact-sales gated",
+   "reviewed": "Enterprise-only",
+   "evidence": [
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-admin-apis.html",
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-shopper-apis.html",
+    "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/quick-start-landing-page.html"
+   ]
+  },
+  {
+   "id": 44,
+   "app": "Salesforce Commerce Cloud",
+   "field": "mcp_available",
+   "groq": "None found",
+   "reviewed": "Official",
+   "evidence": [
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-admin-apis.html",
+    "https://developer.salesforce.com/docs/commerce/commerce-api/guide/authorization-for-shopper-apis.html",
+    "https://developer.salesforce.com/docs/commerce/b2c-commerce/guide/quick-start-landing-page.html"
+   ]
+  },
+  {
+   "id": 49,
+   "app": "Amazon Selling Partner",
+   "field": "api_type",
+   "groq": [
+    "REST",
+    "GraphQL"
+   ],
+   "reviewed": [
+    "REST"
+   ],
+   "evidence": [
+    "https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer",
+    "https://developer-docs.amazon.com/sp-api/docs/welcome"
+   ]
+  },
+  {
+   "id": 49,
+   "app": "Amazon Selling Partner",
+   "field": "mcp_available",
+   "groq": "Unclear",
+   "reviewed": "None found",
+   "evidence": [
+    "https://developer-docs.amazon.com/sp-api/docs/registering-as-a-developer",
+    "https://developer-docs.amazon.com/sp-api/docs/welcome"
+   ]
+  },
+  {
+   "id": 51,
+   "app": "DataForSEO",
+   "field": "credential_access",
+   "groq": "Self-serve (free)",
+   "reviewed": "Self-serve (free trial / sandbox)",
+   "evidence": [
+    "https://docs.dataforseo.com/v3/auth/",
+    "https://github.com/dataforseo/mcp-server-typescript"
+   ]
+  },
+  {
+   "id": 60,
+   "app": "Clay",
+   "field": "credential_access",
+   "groq": "Self-serve (free trial / sandbox)",
+   "reviewed": "Enterprise-only",
+   "evidence": [
+    "https://university.clay.com/docs/http-api-integration-overview",
+    "https://www.clay.com/pricing"
+   ]
+  },
+  {
+   "id": 60,
+   "app": "Clay",
+   "field": "buildability_verdict",
+   "groq": "Ready to build",
+   "reviewed": "Requires outreach / partnership",
+   "evidence": [
+    "https://university.clay.com/docs/http-api-integration-overview",
+    "https://www.clay.com/pricing"
+   ]
+  },
+  {
+   "id": 61,
+   "app": "GitHub",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key",
+    "Basic",
+    "Personal Access Token",
+    "Bearer Token"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "Personal Access Token",
+    "Other"
+   ],
+   "evidence": [
+    "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+    "https://docs.github.com/en/graphql",
+    "https://github.com/github/github-mcp-server"
+   ]
+  },
+  {
+   "id": 61,
+   "app": "GitHub",
+   "field": "mcp_available",
+   "groq": "Third-party/community",
+   "reviewed": "Official",
+   "evidence": [
+    "https://docs.github.com/en/rest/authentication/authenticating-to-the-rest-api",
+    "https://docs.github.com/en/graphql",
+    "https://github.com/github/github-mcp-server"
+   ]
+  },
+  {
+   "id": 64,
+   "app": "Cloudflare",
+   "field": "api_type",
+   "groq": [
+    "REST"
+   ],
+   "reviewed": [
+    "REST",
+    "GraphQL"
+   ],
+   "evidence": [
+    "https://developers.cloudflare.com/fundamentals/api/get-started/create-token/",
+    "https://developers.cloudflare.com/api/",
+    "https://github.com/cloudflare/mcp-server-cloudflare"
+   ]
+  },
+  {
+   "id": 71,
+   "app": "Notion",
+   "field": "auth_methods",
+   "groq": [
+    "Personal Access Token"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "Personal Access Token"
+   ],
+   "evidence": [
+    "https://developers.notion.com/docs/authorization",
+    "https://developers.notion.com/reference/authentication",
+    "https://github.com/makenotion/notion-mcp-server"
+   ]
+  },
+  {
+   "id": 71,
+   "app": "Notion",
+   "field": "mcp_available",
+   "groq": "Unclear",
+   "reviewed": "Official",
+   "evidence": [
+    "https://developers.notion.com/docs/authorization",
+    "https://developers.notion.com/reference/authentication",
+    "https://github.com/makenotion/notion-mcp-server"
+   ]
+  },
+  {
+   "id": 84,
+   "app": "Paygent Connect",
+   "field": "mcp_available",
+   "groq": "Unclear",
+   "reviewed": "None found",
+   "evidence": [
+    "https://docs.nmi.com/llms.txt"
+   ]
+  },
+  {
+   "id": 87,
+   "app": "Xero",
+   "field": "credential_access",
+   "groq": "Self-serve (free trial / sandbox)",
+   "reviewed": "Self-serve (free)",
+   "evidence": [
+    "https://developer.xero.com/documentation/guides/oauth2/overview/",
+    "https://developer.xero.com/documentation/getting-started-guide/",
+    "https://github.com/XeroAPI/xero-mcp-server"
+   ]
+  },
+  {
+   "id": 89,
+   "app": "Ramp",
+   "field": "credential_access",
+   "groq": "Unclear",
+   "reviewed": "Admin approval / app review",
+   "evidence": [
+    "https://docs.ramp.com/llms.txt",
+    "https://github.com/ramp-public/ramp-mcp"
+   ]
+  },
+  {
+   "id": 89,
+   "app": "Ramp",
+   "field": "mcp_available",
+   "groq": "Unclear",
+   "reviewed": "Official",
+   "evidence": [
+    "https://docs.ramp.com/llms.txt",
+    "https://github.com/ramp-public/ramp-mcp"
+   ]
+  },
+  {
+   "id": 89,
+   "app": "Ramp",
+   "field": "buildability_verdict",
+   "groq": "Insufficient evidence",
+   "reviewed": "Buildable with limitations",
+   "evidence": [
+    "https://docs.ramp.com/llms.txt",
+    "https://github.com/ramp-public/ramp-mcp"
+   ]
+  },
+  {
+   "id": 91,
+   "app": "NotebookLM",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key"
+   ],
+   "reviewed": [
+    "OAuth2",
+    "Other"
+   ],
+   "evidence": [
+    "https://cloud.google.com/gemini/enterprise/notebooklm-enterprise/docs/api-notebooks"
+   ]
+  },
+  {
+   "id": 95,
+   "app": "Reducto",
+   "field": "auth_methods",
+   "groq": [
+    "OAuth2",
+    "API Key"
+   ],
+   "reviewed": [
+    "API Key"
+   ],
+   "evidence": [
+    "https://docs.reducto.ai/quickstart",
+    "https://docs.reducto.ai/"
+   ]
+  },
+  {
+   "id": 95,
+   "app": "Reducto",
+   "field": "credential_access",
+   "groq": "Partnership / contact-sales gated",
+   "reviewed": "Self-serve (free)",
+   "evidence": [
+    "https://docs.reducto.ai/quickstart",
+    "https://docs.reducto.ai/"
+   ]
+  },
+  {
+   "id": 95,
+   "app": "Reducto",
+   "field": "mcp_available",
+   "groq": "Unclear",
+   "reviewed": "Official",
+   "evidence": [
+    "https://docs.reducto.ai/quickstart",
+    "https://docs.reducto.ai/"
+   ]
+  },
+  {
+   "id": 95,
+   "app": "Reducto",
+   "field": "buildability_verdict",
+   "groq": "Requires outreach / partnership",
+   "reviewed": "Ready to build",
+   "evidence": [
+    "https://docs.reducto.ai/quickstart",
+    "https://docs.reducto.ai/"
+   ]
+  }
+ ],
+ "apps_requiring_human_review": 23,
+ "pages_fetched_pass2": 868,
+ "pages_ok_pass2": 743,
+ "distinct_sources_cited": 294,
+ "models_used": {
+  "openai/gpt-oss-120b": 56,
+  "openai/gpt-oss-20b": 44
+ },
+ "tool_calls": {
+  "total": 46,
+  "by_tool": {
+   "read_fetched_page": 46
+  },
+  "failed": 0
+ },
+ "crawler_to_groq_changes": [
+  {
+   "id": 1,
+   "app": "Salesforce",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 2,
+   "app": "HubSpot",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 3,
+   "app": "Pipedrive",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 4,
+   "app": "Attio",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Admin approval / app review"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 5,
+   "app": "Twenty",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 6,
+   "app": "Podio",
+   "changes": [
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 7,
+   "app": "Zoho CRM",
+   "changes": [
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 8,
+   "app": "Close",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (paid plan required)",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 9,
+   "app": "Copper",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 10,
+   "app": "DealCloud",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    }
+   ]
+  },
+  {
+   "id": 11,
+   "app": "Zendesk",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 12,
+   "app": "Intercom",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 13,
+   "app": "Freshdesk",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 14,
+   "app": "Front",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 15,
+   "app": "Pylon",
+   "changes": [
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 16,
+   "app": "LiveAgent",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 17,
+   "app": "Plain",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Ready to build",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 18,
+   "app": "Help Scout",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Official"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 19,
+   "app": "Gorgias",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Official"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 20,
+   "app": "Gladly",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 21,
+   "app": "Slack",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 22,
+   "app": "Twilio",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "groq": [
+      "API Key",
+      "Basic"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 23,
+   "app": "Zoho Cliq",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "None found",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 24,
+   "app": "Lark (Larksuite)",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [],
+     "groq": [
+      "OAuth2",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 25,
+   "app": "Pumble",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 26,
+   "app": "Discord",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 27,
+   "app": "Telegram",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Admin approval / app review",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 28,
+   "app": "WhatsApp Business",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "None found",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 29,
+   "app": "Aircall",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 30,
+   "app": "Vonage",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Bearer Token",
+      "Other"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 31,
+   "app": "Google Ads",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "Other"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Admin approval / app review"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    }
+   ]
+  },
+  {
+   "id": 32,
+   "app": "Meta Ads",
+   "changes": [
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 33,
+   "app": "LinkedIn Ads",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Admin approval / app review"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 34,
+   "app": "GoHighLevel",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "Personal Access Token",
+      "Bearer Token"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 35,
+   "app": "Mailchimp",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 36,
+   "app": "Klaviyo",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Admin approval / app review",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 38,
+   "app": "Pinterest",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 39,
+   "app": "Threads (Meta)",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    }
+   ]
+  },
+  {
+   "id": 40,
+   "app": "SendGrid",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 41,
+   "app": "Shopify",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 42,
+   "app": "WooCommerce",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (free trial / sandbox)",
+     "groq": "Self-serve (free)"
+    }
+   ]
+  },
+  {
+   "id": 43,
+   "app": "BigCommerce",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 44,
+   "app": "Salesforce Commerce Cloud",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Requires outreach / partnership"
+    }
+   ]
+  },
+  {
+   "id": 45,
+   "app": "Magento (Adobe Commerce)",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (free)",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Ready to build",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 46,
+   "app": "Squarespace",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Insufficient evidence"
+    }
+   ]
+  },
+  {
+   "id": 47,
+   "app": "Ecwid",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 48,
+   "app": "Gumroad",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (free trial / sandbox)",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Official"
+    }
+   ]
+  },
+  {
+   "id": 49,
+   "app": "Amazon Selling Partner",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (free trial / sandbox)",
+     "groq": "Admin approval / app review"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "None found",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Ready to build",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 50,
+   "app": "fanbasis",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "None found",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 51,
+   "app": "DataForSEO",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "Basic",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "Basic"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Admin approval / app review",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Official"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 52,
+   "app": "SE Ranking",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 53,
+   "app": "Ahrefs",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 54,
+   "app": "MrScraper",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 56,
+   "app": "Firecrawl",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "Other"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Insufficient evidence"
+    }
+   ]
+  },
+  {
+   "id": 57,
+   "app": "Bright Data",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 58,
+   "app": "Sherlock",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 59,
+   "app": "Waterfall.io",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Insufficient evidence"
+    }
+   ]
+  },
+  {
+   "id": 60,
+   "app": "Clay",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 61,
+   "app": "GitHub",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Bearer Token"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 62,
+   "app": "Vercel",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    }
+   ]
+  },
+  {
+   "id": 63,
+   "app": "Netlify",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 64,
+   "app": "Cloudflare",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [
+      "REST",
+      "GraphQL"
+     ],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 65,
+   "app": "Supabase",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Personal Access Token",
+      "OAuth2",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 66,
+   "app": "Neo4j",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "Basic",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (paid plan required)",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 68,
+   "app": "MongoDB Atlas",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [
+      "REST",
+      "GraphQL"
+     ],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Self-serve (paid plan required)",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 69,
+   "app": "Datadog",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 70,
+   "app": "Sentry",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Personal Access Token",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 71,
+   "app": "Notion",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 72,
+   "app": "Airtable",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 73,
+   "app": "Linear",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Admin approval / app review",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 74,
+   "app": "Jira",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2",
+      "Basic",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [
+      "REST",
+      "GraphQL"
+     ],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 75,
+   "app": "Asana",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 76,
+   "app": "Monday.com",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 77,
+   "app": "ClickUp",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 79,
+   "app": "Smartsheet",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Unclear"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 80,
+   "app": "Harvest",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "OAuth2",
+      "Personal Access Token",
+      "Basic"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 81,
+   "app": "Stripe",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Basic"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 82,
+   "app": "Plaid",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 83,
+   "app": "Binance",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Unclear",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "None found"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Buildable with limitations",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 84,
+   "app": "Paygent Connect",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "None found",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 85,
+   "app": "iPayX",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 86,
+   "app": "QuickBooks",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Basic",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 87,
+   "app": "Xero",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 89,
+   "app": "Ramp",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [],
+     "groq": [
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Third-party/community",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 90,
+   "app": "PitchBook",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [],
+     "groq": [
+      "API Key"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 91,
+   "app": "NotebookLM",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free trial / sandbox)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 92,
+   "app": "Otter AI",
+   "changes": [
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Admin approval / app review"
+    }
+   ]
+  },
+  {
+   "id": 93,
+   "app": "Fathom",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "OAuth2",
+      "API Key"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 94,
+   "app": "Consensus",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Bearer Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Ready to build"
+    }
+   ]
+  },
+  {
+   "id": 95,
+   "app": "Reducto",
+   "changes": [
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Unclear"
+    }
+   ]
+  },
+  {
+   "id": 96,
+   "app": "Devin",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key",
+      "Personal Access Token",
+      "Other"
+     ],
+     "groq": [
+      "API Key",
+      "Personal Access Token"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 97,
+   "app": "higgsfield",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "API Key"
+     ],
+     "groq": []
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Partnership / contact-sales gated",
+     "groq": "Unclear"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    }
+   ]
+  },
+  {
+   "id": 98,
+   "app": "Mermaid CLI",
+   "changes": [
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Not currently feasible"
+    }
+   ]
+  },
+  {
+   "id": 99,
+   "app": "YouTube Transcript",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "API Key"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (paid plan required)"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Requires outreach / partnership",
+     "groq": "Buildable with limitations"
+    }
+   ]
+  },
+  {
+   "id": 100,
+   "app": "Grain",
+   "changes": [
+    {
+     "field": "auth_methods",
+     "crawler": [
+      "OAuth2",
+      "Personal Access Token"
+     ],
+     "groq": [
+      "API Key",
+      "OAuth2"
+     ]
+    },
+    {
+     "field": "api_type",
+     "crawler": [],
+     "groq": [
+      "REST"
+     ]
+    },
+    {
+     "field": "credential_access",
+     "crawler": "Enterprise-only",
+     "groq": "Self-serve (free)"
+    },
+    {
+     "field": "mcp_available",
+     "crawler": "Official",
+     "groq": "Third-party/community"
+    },
+    {
+     "field": "buildability_verdict",
+     "crawler": "Insufficient evidence",
+     "groq": "Ready to build"
+    }
+   ]
+  }
+ ]
+}

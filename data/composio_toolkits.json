@@ -1,0 +1,3240 @@
+[
+ {
+  "id": 1,
+  "app_name": "Salesforce",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "salesforce",
+    "name": "Salesforce",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 556.0,
+    "app_url": "https://www.salesforce.com/in/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 2,
+  "app_name": "HubSpot",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "hubspot",
+    "name": "HubSpot",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 354.0,
+    "app_url": "https://www.hubspot.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 3,
+  "app_name": "Pipedrive",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "pipedrive",
+    "name": "Pipedrive",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 404.0,
+    "app_url": "https://www.pipedrive.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 4,
+  "app_name": "Attio",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "attio",
+    "name": "Attio",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 105.0,
+    "app_url": "https://attio.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 5,
+  "app_name": "Twenty",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "twenty",
+    "name": "Twenty",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 23.0,
+    "app_url": "https://twenty.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 6,
+  "app_name": "Podio",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "podio",
+    "name": "Podio",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 143.0,
+    "app_url": "https://podio.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 7,
+  "app_name": "Zoho CRM",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "zoho",
+    "name": "Zoho",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 115.0,
+    "app_url": "https://www.zoho.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 8,
+  "app_name": "Close",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "close",
+    "name": "Close",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 75.0,
+    "app_url": "https://www.close.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 9,
+  "app_name": "Copper",
+  "category": "CRM and Sales",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "copper",
+    "name": "Copper",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 65.0,
+    "app_url": "https://www.copper.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 10,
+  "app_name": "DealCloud",
+  "category": "CRM and Sales",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 11,
+  "app_name": "Zendesk",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "zendesk",
+    "name": "Zendesk",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 483.0,
+    "app_url": "https://www.zendesk.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 12,
+  "app_name": "Intercom",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "intercom",
+    "name": "Intercom",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 138.0,
+    "app_url": "https://www.intercom.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 13,
+  "app_name": "Freshdesk",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "freshdesk",
+    "name": "Freshdesk",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 184.0,
+    "app_url": "https://www.freshworks.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 14,
+  "app_name": "Front",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "front",
+    "name": "Front",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 180.0,
+    "app_url": "https://frontapp.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 15,
+  "app_name": "Pylon",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "vendor domain",
+  "match_confidence": "medium",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "pylon_mcp",
+    "name": "Pylon MCP",
+    "type": "mcp",
+    "auth_schemes": [
+     "DCR_OAUTH"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 12.0,
+    "app_url": "https://mcp.usepylon.com"
+   }
+  ],
+  "composio_auth": [
+   "Other"
+  ],
+  "crawler_auth": [
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 16,
+  "app_name": "LiveAgent",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 17,
+  "app_name": "Plain",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "plain",
+    "name": "Plain",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 119.0,
+    "app_url": "https://www.plain.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 18,
+  "app_name": "Help Scout",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "help_scout",
+    "name": "Help Scout",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 129.0,
+    "app_url": "https://www.helpscout.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 19,
+  "app_name": "Gorgias",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "gorgias",
+    "name": "Gorgias",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 51.0,
+    "app_url": "https://www.gorgias.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 20,
+  "app_name": "Gladly",
+  "category": "Support and Helpdesk",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 21,
+  "app_name": "Slack",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "slack",
+    "name": "Slack",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 165.0,
+    "app_url": "https://slack.com/intl/en-in//"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 22,
+  "app_name": "Twilio",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "twilio",
+    "name": "Twilio",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "BASIC",
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 452.0,
+    "app_url": "https://www.twilio.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "Basic",
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 23,
+  "app_name": "Zoho Cliq",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "zoho_cliq",
+    "name": "Zoho Cliq",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 162.0,
+    "app_url": "https://www.zoho.com/cliq/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 24,
+  "app_name": "Lark (Larksuite)",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "lark",
+    "name": "Lark",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 451.0,
+    "app_url": "https://www.larksuite.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [],
+  "auth_agreement": "crawler found no auth",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 25,
+  "app_name": "Pumble",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "pumble",
+    "name": "Pumble",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 9.0,
+    "app_url": "https://pumble.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 26,
+  "app_name": "Discord",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "discord",
+    "name": "Discord",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 23.0,
+    "app_url": "https://composio.dev"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 27,
+  "app_name": "Telegram",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "telegram",
+    "name": "Telegram",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 18.0,
+    "app_url": "https://telegram.org/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "disagree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 28,
+  "app_name": "WhatsApp Business",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "whatsapp",
+    "name": "WhatsApp",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 127.0,
+    "app_url": "https://web.whatsapp.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 29,
+  "app_name": "Aircall",
+  "category": "Communications and Messaging",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "aircall",
+    "name": "Aircall",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "BASIC"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 48.0,
+    "app_url": "https://aircall.io"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Basic"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 30,
+  "app_name": "Vonage",
+  "category": "Communications and Messaging",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 31,
+  "app_name": "Google Ads",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "googleads",
+    "name": "Google Ads",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 78.0,
+    "app_url": "https://composio.dev"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 32,
+  "app_name": "Meta Ads",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "metaads",
+    "name": "Meta Ads",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 99.0,
+    "app_url": "https://business.meta.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 33,
+  "app_name": "LinkedIn Ads",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "linkedin",
+    "name": "LinkedIn",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 31.0,
+    "app_url": "https://linkedin.com/"
+   },
+   {
+    "slug": "linkedin_ads",
+    "name": "Linkedin Ads",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 28.0,
+    "app_url": "https://www.linkedin.com/advertising"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 34,
+  "app_name": "GoHighLevel",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "vendor domain",
+  "match_confidence": "medium",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "highlevel_location",
+    "name": "HighLevel Location",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "BEARER_TOKEN"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 554.0,
+    "app_url": "https://www.gohighlevel.com/"
+   },
+   {
+    "slug": "highlevel_agency",
+    "name": "HighLevel Agency",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 16.0,
+    "app_url": "https://www.gohighlevel.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Bearer Token"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 35,
+  "app_name": "Mailchimp",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "mailchimp",
+    "name": "Mailchimp",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 275.0,
+    "app_url": "https://mailchimp.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 36,
+  "app_name": "Klaviyo",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "klaviyo",
+    "name": "Klaviyo",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 233.0,
+    "app_url": "https://www.klaviyo.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 37,
+  "app_name": "systeme.io",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 38,
+  "app_name": "Pinterest",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "pinterest",
+    "name": "Pinterest",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 27.0,
+    "app_url": "https://www.pinterest.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 39,
+  "app_name": "Threads (Meta)",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "threads",
+    "name": "Threads",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 24.0,
+    "app_url": "https://www.threads.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 40,
+  "app_name": "SendGrid",
+  "category": "Marketing, Ads, Email and Social",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "sendgrid",
+    "name": "SendGrid",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 359.0,
+    "app_url": "https://login.sendgrid.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 41,
+  "app_name": "Shopify",
+  "category": "Ecommerce",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "shopify",
+    "name": "Shopify",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 386.0,
+    "app_url": "https://www.shopify.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 42,
+  "app_name": "WooCommerce",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 43,
+  "app_name": "BigCommerce",
+  "category": "Ecommerce",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "bigcommerce",
+    "name": "BigCommerce",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 532.0,
+    "app_url": "https://www.bigcommerce.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 44,
+  "app_name": "Salesforce Commerce Cloud",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "rejected on review",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": "Matched 'salesforce' only via the shared salesforce.com domain; that toolkit covers Sales Cloud, not Commerce Cloud.",
+  "toolkits": [
+   {
+    "slug": "salesforce",
+    "name": "Salesforce",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 556.0,
+    "app_url": "https://www.salesforce.com/in/"
+   },
+   {
+    "slug": "salesforce_data_360",
+    "name": "Salesforce Data 360",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 424.0,
+    "app_url": "https://www.salesforce.com/data/"
+   },
+   {
+    "slug": "salesforce_service_cloud",
+    "name": "Salesforce Service Cloud",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 22.0,
+    "app_url": "https://www.salesforce.com/service/"
+   }
+  ],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 45,
+  "app_name": "Magento (Adobe Commerce)",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 46,
+  "app_name": "Squarespace",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 47,
+  "app_name": "Ecwid",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 48,
+  "app_name": "Gumroad",
+  "category": "Ecommerce",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "gumroad",
+    "name": "Gumroad",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 13.0,
+    "app_url": "https://gumroad.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 49,
+  "app_name": "Amazon Selling Partner",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 50,
+  "app_name": "fanbasis",
+  "category": "Ecommerce",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 51,
+  "app_name": "DataForSEO",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "dataforseo",
+    "name": "DataForSEO",
+    "type": "api",
+    "auth_schemes": [
+     "BASIC"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 354.0,
+    "app_url": "https://dataforseo.com"
+   }
+  ],
+  "composio_auth": [
+   "Basic"
+  ],
+  "crawler_auth": [
+   "Basic",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 52,
+  "app_name": "SE Ranking",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 53,
+  "app_name": "Ahrefs",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "ahrefs",
+    "name": "Ahrefs",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 46.0,
+    "app_url": "https://ahrefs.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 54,
+  "app_name": "MrScraper",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "mrscraper",
+    "name": "MrScraper",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 11.0,
+    "app_url": "https://mrscraper.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 55,
+  "app_name": "Apify",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "apify",
+    "name": "Apify",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 184.0,
+    "app_url": "https://apify.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 56,
+  "app_name": "Firecrawl",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "firecrawl",
+    "name": "Firecrawl",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 245.0,
+    "app_url": "https://www.firecrawl.dev/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 57,
+  "app_name": "Bright Data",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "brightdata",
+    "name": "Bright Data",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 167.0,
+    "app_url": "https://brightdata.com/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 58,
+  "app_name": "Sherlock",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 59,
+  "app_name": "Waterfall.io",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 60,
+  "app_name": "Clay",
+  "category": "Data, SEO and Scraping",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "clay",
+    "name": "Clay",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 15.0,
+    "app_url": "https://clay.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 61,
+  "app_name": "GitHub",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "github",
+    "name": "GitHub",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 883.0,
+    "app_url": "https://github.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 62,
+  "app_name": "Vercel",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "vercel",
+    "name": "Vercel",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 399.0,
+    "app_url": "https://vercel.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 63,
+  "app_name": "Netlify",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "slug prefix",
+  "match_confidence": "weak",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "netlify_mcp",
+    "name": "Netlify MCP",
+    "type": "mcp",
+    "auth_schemes": [
+     "DCR_OAUTH"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 9.0,
+    "app_url": "https://netlify-mcp.netlify.app/mcp"
+   }
+  ],
+  "composio_auth": [
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "disagree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 64,
+  "app_name": "Cloudflare",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "cloudflare",
+    "name": "Cloudflare",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 171.0,
+    "app_url": "https://dash.cloudflare.com/sign-up"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 65,
+  "app_name": "Supabase",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "supabase",
+    "name": "Supabase",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 230.0,
+    "app_url": "https://supabase.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 66,
+  "app_name": "Neo4j",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "neo4j",
+    "name": "Neo4J",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "BASIC",
+     "API_KEY",
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 21.0,
+    "app_url": "https://neo4j.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Basic",
+   "API Key",
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 67,
+  "app_name": "Snowflake",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "snowflake",
+    "name": "Snowflake",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 16.0,
+    "app_url": "https://www.snowflake.com/en/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 68,
+  "app_name": "MongoDB Atlas",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "mongodb",
+    "name": "MongoDB",
+    "type": "api",
+    "auth_schemes": [
+     "S2S_OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 496.0,
+    "app_url": "https://www.mongodb.com/"
+   }
+  ],
+  "composio_auth": [
+   "Other"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 69,
+  "app_name": "Datadog",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "datadog",
+    "name": "Datadog",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY",
+     "BEARER_TOKEN"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 255.0,
+    "app_url": "https://www.datadoghq.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key",
+   "Bearer Token"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 70,
+  "app_name": "Sentry",
+  "category": "Developer, Infra and Data platforms",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "sentry",
+    "name": "Sentry",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 210.0,
+    "app_url": "https://sentry.io/welcome/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 71,
+  "app_name": "Notion",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "medium",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "notion",
+    "name": "Notion",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 59.0,
+    "app_url": "https://www.notion.so"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 72,
+  "app_name": "Airtable",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "airtable",
+    "name": "Airtable",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 26.0,
+    "app_url": "https://www.airtable.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 73,
+  "app_name": "Linear",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "linear",
+    "name": "Linear",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 47.0,
+    "app_url": "https://linear.app"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 74,
+  "app_name": "Jira",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "jira",
+    "name": "Jira",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "S2S_OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 166.0,
+    "app_url": "https://www.atlassian.com/software/jira"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Other",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 75,
+  "app_name": "Asana",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "asana",
+    "name": "Asana",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 247.0,
+    "app_url": "https://asana.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 76,
+  "app_name": "Monday.com",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "monday",
+    "name": "Monday",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 122.0,
+    "app_url": "https://monday.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 77,
+  "app_name": "ClickUp",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "clickup",
+    "name": "ClickUp",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 163.0,
+    "app_url": "https://clickup.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 78,
+  "app_name": "Coda",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "coda",
+    "name": "Coda",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 109.0,
+    "app_url": "https://coda.io/"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 79,
+  "app_name": "Smartsheet",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "smartsheet",
+    "name": "Smartsheet",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "BEARER_TOKEN"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 180.0,
+    "app_url": "https://www.smartsheet.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "Bearer Token"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "partial overlap",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 80,
+  "app_name": "Harvest",
+  "category": "Productivity and Project Management",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "harvest",
+    "name": "Harvest",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 60.0,
+    "app_url": "https://www.getharvest.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 81,
+  "app_name": "Stripe",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "stripe",
+    "name": "Stripe",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY",
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 428.0,
+    "app_url": "https://stripe.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key",
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Basic"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 82,
+  "app_name": "Plaid",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "plaid",
+    "name": "Plaid",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 70.0,
+    "app_url": "https://plaid.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 83,
+  "app_name": "Binance",
+  "category": "Finance and Fintech",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 84,
+  "app_name": "Paygent Connect",
+  "category": "Finance and Fintech",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 85,
+  "app_name": "iPayX",
+  "category": "Finance and Fintech",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 86,
+  "app_name": "QuickBooks",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "quickbooks",
+    "name": "QuickBooks",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 119.0,
+    "app_url": "https://quickbooks.intuit.com"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Basic",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 87,
+  "app_name": "Xero",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "xero",
+    "name": "Xero",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 109.0,
+    "app_url": "https://www.xero.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 88,
+  "app_name": "Brex",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "brex",
+    "name": "Brex",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 84.0,
+    "app_url": "https://www.brex.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 89,
+  "app_name": "Ramp",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "ramp",
+    "name": "Ramp",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 186.0,
+    "app_url": "https://ramp.com/"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [],
+  "auth_agreement": "crawler found no auth",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 90,
+  "app_name": "PitchBook",
+  "category": "Finance and Fintech",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "pitchbook",
+    "name": "PitchBook",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 130.0,
+    "app_url": "https://pitchbook.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [],
+  "auth_agreement": "crawler found no auth",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 91,
+  "app_name": "NotebookLM",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "notebook_lm",
+    "name": "NotebookLM",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 11.0,
+    "app_url": "https://notebooklm.google.com/enterprise"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 92,
+  "app_name": "Otter AI",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "vendor domain",
+  "match_confidence": "medium",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "otter_ai_mcp",
+    "name": "Otter.ai MCP",
+    "type": "mcp",
+    "auth_schemes": [
+     "DCR_OAUTH"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 3.0,
+    "app_url": "https://mcp.otter.ai/mcp"
+   }
+  ],
+  "composio_auth": [
+   "Other"
+  ],
+  "crawler_auth": [],
+  "auth_agreement": "crawler found no auth",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 93,
+  "app_name": "Fathom",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "fathom",
+    "name": "Fathom",
+    "type": "api",
+    "auth_schemes": [
+     "OAUTH2",
+     "API_KEY"
+    ],
+    "composio_managed": [
+     "OAUTH2"
+    ],
+    "no_auth": false,
+    "tools_count": 10.0,
+    "app_url": "https://fathom.video"
+   }
+  ],
+  "composio_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 94,
+  "app_name": "Consensus",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "consensus",
+    "name": "Consensus",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 1.0,
+    "app_url": "https://consensus.app"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 95,
+  "app_name": "Reducto",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": false,
+  "match_method": "none",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": null,
+  "toolkits": [],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 96,
+  "app_name": "Devin",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "vendor domain",
+  "match_confidence": "medium",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "devin_mcp",
+    "name": "Devin MCP",
+    "type": "mcp",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 23.0,
+    "app_url": "https://mcp.devin.ai/mcp"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key",
+   "Personal Access Token",
+   "Other"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 97,
+  "app_name": "higgsfield",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "higgsfield",
+    "name": "Higgsfield",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 13.0,
+    "app_url": "https://cloud.higgsfield.ai"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "API Key"
+  ],
+  "auth_agreement": "agree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 98,
+  "app_name": "Mermaid CLI",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": false,
+  "match_method": "rejected on review",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": "Matched 'mermaid_chart_mcp' (Mermaid Chart SaaS); the brief's app is the open-source mermaid-cli tool.",
+  "toolkits": [
+   {
+    "slug": "mermaid_chart_mcp",
+    "name": "Mermaid Chart MCP",
+    "type": "mcp",
+    "auth_schemes": [
+     "NO_AUTH"
+    ],
+    "composio_managed": [],
+    "no_auth": true,
+    "tools_count": 1.0,
+    "app_url": "https://chatgpt.mermaid.ai/anthropic/mcp"
+   }
+  ],
+  "composio_auth": [],
+  "crawler_auth": [],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 99,
+  "app_name": "YouTube Transcript",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": false,
+  "match_method": "rejected on review",
+  "match_confidence": "none",
+  "domain_confirmed": false,
+  "rejection_reason": "Matched 'youtube_transcript' whose app_url is youtubetranscript.dev; the brief's app is transcriptapi.com, a different vendor.",
+  "toolkits": [
+   {
+    "slug": "youtube_transcript",
+    "name": "YouTube Transcript",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 9.0,
+    "app_url": "https://www.youtubetranscript.dev"
+   }
+  ],
+  "composio_auth": [],
+  "crawler_auth": [
+   "OAuth2",
+   "API Key"
+  ],
+  "auth_agreement": "no Composio toolkit",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ },
+ {
+  "id": 100,
+  "app_name": "Grain",
+  "category": "AI, Research and Media-native",
+  "composio_toolkit": true,
+  "match_method": "name/slug",
+  "match_confidence": "strong",
+  "domain_confirmed": true,
+  "rejection_reason": null,
+  "toolkits": [
+   {
+    "slug": "grain",
+    "name": "Grain",
+    "type": "api",
+    "auth_schemes": [
+     "API_KEY"
+    ],
+    "composio_managed": [],
+    "no_auth": false,
+    "tools_count": 17.0,
+    "app_url": "https://grain.com"
+   }
+  ],
+  "composio_auth": [
+   "API Key"
+  ],
+  "crawler_auth": [
+   "OAuth2",
+   "Personal Access Token"
+  ],
+  "auth_agreement": "disagree",
+  "source": "Composio toolkit catalog via composio SDK toolkits.list()"
+ }
+]
