@@ -213,4 +213,5 @@ With 12 to 18 sample apps each, the gap is within noise and confounded by app mi
 - **Docs change.** The research reflects 24 Nov 2026.
 - **Not yet deployed.** It's ready for GitHub Pages: publish the `dashboard/` folder.
 #   C o m p o s i o - e c o s y s t e m - r e s e a r c h - a g e n t  
+ #   C o m p o s i o - e c o s y s t e m - r e s e a r c h - a g e n t  
  
